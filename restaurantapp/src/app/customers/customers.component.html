@@ -1,0 +1,19 @@
+<p>This page is {{title}}</p>
+
+<p>{{customerList[0].id}}</p>
+
+<p>{{customerList[0].name}}</p>
+
+<p>{{customerList[1].email}}</p>
+
+
+
+<div class="grid grid-pad">
+    <a *ngFor="let the_customer of customerList" class="col-1-4">
+      <div class="module hero">
+        <h3>Customer ID: {{the_customer.id}}</h3>
+        <h4>Customer Name: {{the_customer.name}}</h4>
+        <h4>Customer Email :{{the_customer.email}}</h4>
+      </div>
+    </a>
+  </div>
