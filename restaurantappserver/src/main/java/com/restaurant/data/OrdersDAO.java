@@ -34,6 +34,8 @@ public class OrdersDAO {
     @PostConstruct
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public void initDB() {
+    	
+    	/*
         Orders o = new Orders();
 
         MenuItems burger = new MenuItems();
@@ -52,8 +54,13 @@ public class OrdersDAO {
         coke.setDescription("desc");
         coke.setPrice(100);
         
+        //Set<Orders> orders = new HashSet<Orders>();
         
-        Set<MenuItems> itemsOrdered = new HashSet<MenuItems>();
+        //orders.add(getById(1));
+        
+        //burger.setOrders(orders);
+        
+        Set<MenuItems> itemsOrdered = new HashSet<>();
         
         itemsOrdered.add(burger);
         itemsOrdered.add(fries);
@@ -67,12 +74,14 @@ public class OrdersDAO {
         o.setBillingAddress("11 LALA LANE");
         o.setCustomer_id(1);
         o.setItemsOrdered(itemsOrdered);
-
+		*/
+    
+    	
         Orders o2 = new Orders();
 
 
 
-        Set<MenuItems> itemsOrdered2 = new HashSet<MenuItems>();
+        Set<MenuItems> itemsOrdered2 = new HashSet<>();
 
         itemsOrdered2.add(menuItemsDAO.getById(1));
         itemsOrdered2.add(menuItemsDAO.getById(2));
@@ -88,9 +97,12 @@ public class OrdersDAO {
         o2.setItemsOrdered(itemsOrdered2);
 
         Session session = sessionFactory.openSession();
-        session.save(o);
-        session.save(o2);
         
+        //session.save(burger);
+     
+
+       session.save(o2);
+        //session.save(o2);
 
     }
 

@@ -6,6 +6,30 @@
 
 <p>{{customerList[1].email}}</p>
 
+<p>{{firstName}}</p>
+
+<p>{{lastName}}</p>
+
+<p>{{email}}</p>
+
+
+<div>
+  <form #messageForm="ngForm">
+      <div>
+          <input name="email" #messageText type="text" placeholder="email" [(ngModel)]="email" required/>
+
+          <input name="firstName" #messageText type="text" placeholder="First Name" [(ngModel)]="firstName" required/>
+
+          <input name="lastName" #messageText type="text" placeholder="Last Name" [(ngModel)]="lastName" required/>
+
+      </div>
+      <div>
+          <button >Submit</button>
+      </div>
+  </form>
+</div>
+
+
 
 
 <div class="grid grid-pad">

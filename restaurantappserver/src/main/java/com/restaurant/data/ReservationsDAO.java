@@ -1,6 +1,7 @@
 package com.restaurant.data;
 
 
+import com.restaurant.models.MenuItems;
 import com.restaurant.models.Orders;
 import com.restaurant.models.Reservations;
 import org.hibernate.Query;
@@ -41,6 +42,20 @@ public class ReservationsDAO {
         this.sessionFactory = sessionFactory;
     }
 
+    
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
+    public void save(Reservations r) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(r);
+    }
+
+    @Transactional(readOnly = true)
+    public Reservations getById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Reservations) session.get(Reservations.class, id);
+    }
+    
+    
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public List<Reservations> getAll() {

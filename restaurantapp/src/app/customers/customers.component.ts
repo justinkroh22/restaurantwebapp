@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../customer';
+import { CustomerClass } from '../customerclass';
 
 import { CustomersService } from '../customers.service';
 
@@ -30,6 +31,16 @@ export class CustomersComponent implements OnInit {
 
   customerList: Customer[] = [];
 
+  email: string;
+  firstName: string = '';
+  lastName: string = '';
+
+
+  customer: CustomerClass = new CustomerClass();
+
+
+
+
   getCustomers(): void {
 
     //this.customerList = this.customersService.getCustomers();
@@ -37,7 +48,11 @@ export class CustomersComponent implements OnInit {
     this.customersService.getCustomers()
     .subscribe(customerList => this.customerList = customerList);
 
-    
+  }
+
+  saveCustomer(customer: Customer): void {
+    this.customersService.saveCustomer(customer)
+    .subscribe(resp => console.log(resp));
 
   }
 

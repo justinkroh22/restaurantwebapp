@@ -32,9 +32,9 @@ public class EmployeeDAO {
         e.setAddress("test");
         e.setUser_type("EMPLOYEE");
 
-
-       // Session session = sessionFactory.openSession();
-        //session.save(e);
+        
+       Session session = sessionFactory.openSession();
+       session.save(e);
     }
 
     @Autowired

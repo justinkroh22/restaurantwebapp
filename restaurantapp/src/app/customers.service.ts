@@ -21,4 +21,10 @@ export class CustomersService {
     console.log(this.http.get<Customer[]>(this.customersUrl));
     return this.http.get<Customer[]>(this.customersUrl);
   }
+
+  saveCustomer(customer: Customer): Observable<any> {
+    return this.http.post<any>(this.customersUrl, customer, {
+      observe: 'response'
+    });
+  }
 }
