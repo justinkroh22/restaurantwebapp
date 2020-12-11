@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CustomersService {
 
-  private customersUrl = 'https://jsonplaceholder.typicode.com/users';
+  private customersUrl = 'api/customers';
 
   constructor(private http: HttpClient
     

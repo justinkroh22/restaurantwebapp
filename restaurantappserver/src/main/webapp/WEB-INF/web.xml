@@ -28,7 +28,7 @@
 
     <!-- Map the Dispatcher servlet
        Mapping the servlet to the root '/' will cause some complications
-       if you are planning to serve some static content directly (like index.html)
+       if you are planning to serve some static content directly (like indexArchive.html)
        it is common practice to serve web request to non-static content behind a
        prefix (like /api) -->
     <servlet-mapping>

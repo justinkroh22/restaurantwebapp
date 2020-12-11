@@ -8,11 +8,13 @@ import { CustomersComponent } from './customers/customers.component';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomersComponent
+    CustomersComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,

@@ -49,8 +49,8 @@ public class Orders {
     // @JoinTable informs hibernate of the junction table that hosts the many-to-many relationship
     //
     @JoinTable(name="order_items",
-        joinColumns=@JoinColumn(name="order_id", referencedColumnName="order_id", columnDefinition="INT"),
-        inverseJoinColumns = @JoinColumn(name="menu_id", referencedColumnName="menu_id", columnDefinition="INT")
+        joinColumns=@JoinColumn(name="order_id", referencedColumnName="order_id"),
+        inverseJoinColumns = @JoinColumn(name="menu_id", referencedColumnName="menu_id")
     )
     private Set<MenuItems> itemsOrdered;
 	

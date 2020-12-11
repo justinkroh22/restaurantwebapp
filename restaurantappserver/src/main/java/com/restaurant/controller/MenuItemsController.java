@@ -22,7 +22,7 @@ public class MenuItemsController {
     private MenuItemsDAO menuItemsDAO;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<MenuItems> getAllStarships() {
+    public List<MenuItems> getAllMenuItems() {
         return menuItemsDAO.getAll();
     }
 

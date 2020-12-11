@@ -24,7 +24,7 @@ public class OrdersController {
     private OrdersDAO ordersDAO;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Orders> getAllStarships() {
+    public List<Orders> getAllOrders() {
         return ordersDAO.getAll();
     }
 
