@@ -20,7 +20,7 @@ public class EmployeeController {
     private EmployeeDAO employeeDAO;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Employee> getAllStarships() {
+    public List<Employee> getAllEmployees() {
         return employeeDAO.getAll();
     }
 
