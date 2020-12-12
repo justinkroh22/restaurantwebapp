@@ -76,6 +76,7 @@ public class OrdersDAO {
         o.setItemsOrdered(itemsOrdered);
 		*/
     
+    	/*
     	
         Orders o2 = new Orders();
 
@@ -98,11 +99,15 @@ public class OrdersDAO {
 
         Session session = sessionFactory.openSession();
         
+       
         //session.save(burger);
      
 
        session.save(o2);
         //session.save(o2);
+         * 
+         * 
+         * */
 
     }
 
