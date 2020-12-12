@@ -14,16 +14,18 @@ export class CustomersComponent implements OnInit {
 
   title = 'Customer List';
 
-  /*
+  
   customer: Customer = {
-    user_id: 1,
+    id: 1,
+    password: 'blah',
     firstName: 'Justin',
     lastName: 'Kroh',
-    email: 'Justinkroh@gmail.com'
+    email: 'Justinkroh@gmail.com',
+    address: 'test'
 
   };
 
-*/
+
 
 
   constructor(private customersService: CustomersService) { }
@@ -31,12 +33,10 @@ export class CustomersComponent implements OnInit {
 
   customerList: Customer[] = [];
 
-  email: string;
-  firstName: string = '';
-  lastName: string = '';
 
 
-  customer: CustomerClass = new CustomerClass();
+
+
 
 
 
@@ -58,6 +58,7 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomers();
+    this.saveCustomer(this.customer);
   }
 
 }
