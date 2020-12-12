@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomersComponent } from './customers/customers.component';
 
 import { FormsModule } from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
-import { ReservationsComponent } from './reservations/reservations.component';
+
+import { CustomersComponent } from './Components/customers/customers.component';
+import { ReservationsComponent } from './Components/reservations/reservations.component';
 
 @NgModule({
   declarations: [

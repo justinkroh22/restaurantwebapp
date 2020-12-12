@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Customer } from './customer';
+import { Customer } from '../Models/customer';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CustomersService {
 
-  private customersUrl = 'http://localhost:8081/restaurantappserver/api/customers';
+  private customersUrl = 'http://localhost:8081/api/customers';
 
   constructor(private http: HttpClient
     
