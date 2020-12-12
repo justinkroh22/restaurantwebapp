@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../customer';
-import { CustomerClass } from '../customerclass';
+import { Customer } from '../../Models/customer';
+import { CustomerClass } from '../../customerclass';
 
-import { CustomersService } from '../customers.service';
+import { CustomersService } from '../../Services/customers.service';
 
 @Component({
   selector: 'app-customers',
