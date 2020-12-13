@@ -7,12 +7,13 @@ import { ReservationsService } from '../../Services/reservations.service';
   templateUrl: './reservations.component.html',
   styleUrls: ['./reservations.component.css']
 })
-export class ReservationsComponent implements OnInit {
+export class ReservationsComponent implements OnInit{
 
   title = 'Reservation List';
 
 
   constructor(private reservationsService: ReservationsService) { }
+
 
 
   reservationsList: Reservations[] = [];
@@ -27,7 +28,22 @@ export class ReservationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getReservations();
+    // this.getReservations();
+  }
+
+  saveReservations(reservationDate: string, reservationTime: number): void {
+
+    let reservation: Reservations = {
+      reservation_id : 42,
+      customer_id: 1,
+      date : reservationDate,
+      time : reservationTime
+    };
+
+    console.log(reservation);
+
+    this.reservationsService.saveReservations(reservation)
+      .subscribe(resp => console.log(resp));
   }
 
 }
