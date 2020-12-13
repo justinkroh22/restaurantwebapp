@@ -3,6 +3,7 @@ import { Customer } from '../../Models/customer';
 import { CustomerClass } from '../../customerclass';
 
 import { CustomersService } from '../../Services/customers.service';
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-customers',
@@ -14,7 +15,6 @@ export class CustomersComponent implements OnInit {
 
   title = 'Customer List';
 
-  
   customer: Customer = {
     id: 1,
     password: 'blah',
@@ -25,19 +25,47 @@ export class CustomersComponent implements OnInit {
 
   };
 
+  form: FormGroup;
+
+
+  constructor(private formBuilder: FormBuilder, private customersService: CustomersService) {
+    this.form = this.formBuilder.group({
+      firstName: '',
+      lastName: '',
+      email: '',
+      address: '',
 
 
 
-  constructor(private customersService: CustomersService) { }
+    })
+
+   }
 
 
   customerList: Customer[] = [];
 
 
+  
 
 
+  submitForm() {
 
+    console.log(this.form.value);
+    
+    console.log(this.form.get('firstName')?.value);
 
+    var firstName = this.form.get('firstName')?.value;
+    var lastName = this.form.get('lastName')?.value;
+    var email = this.form.get('email')?.value;
+    var address = this.form.get('address')?.value;
+
+    let customerclass: CustomerClass = new CustomerClass(firstName, lastName, email, address);
+
+    console.log(customerclass);
+
+    this.customersService.saveCustomerForm(customerclass)
+    .subscribe((data => {console.log(data.body.customer_id)}));
+  }
 
 
 

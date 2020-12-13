@@ -10,6 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomersComponent } from './Components/customers/customers.component';
 import { ReservationsComponent } from './Components/reservations/reservations.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,8 @@ import { ReservationsComponent } from './Components/reservations/reservations.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
