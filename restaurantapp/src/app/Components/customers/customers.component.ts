@@ -63,6 +63,9 @@ export class CustomersComponent implements OnInit {
 
     console.log(customerclass);
 
+
+
+    // This data is returned data after post just use .whatever field
     this.customersService.saveCustomerForm(customerclass)
     .subscribe((data => {console.log(data.body.customer_id)}));
   }
