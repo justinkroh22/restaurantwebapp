@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CustomersService {
 
-  private customersUrl = 'http://localhost:8081/api/customers';
+  private customersUrl = 'http://localhost:8081/restaurantappserver/api/customers';
 
   constructor(private http: HttpClient
     
@@ -26,5 +26,17 @@ export class CustomersService {
     return this.http.post<any>(this.customersUrl, customer, {
       observe: 'response'
     });
+  }
+
+
+   httpOptions: any = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    observe: 'response'
+  };
+
+  saveCustomerForm(any: any): Observable<any> {
+    return this.http.post<any>(this.customersUrl, any, this.httpOptions);
   }
 }

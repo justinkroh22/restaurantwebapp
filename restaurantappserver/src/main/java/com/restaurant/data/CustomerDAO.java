@@ -25,16 +25,7 @@ public class CustomerDAO {
     @PostConstruct
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public void initDB() {
-        Customer c = new Customer();
-        c.setEmail("test@email.com");
-        c.setPassword("testpassword");
-        c.setFirstName("test");
-        c.setLastName("test");
-        c.setAddress("test");
 
-
-        Session session = sessionFactory.openSession();
-        session.save(c);
     }
 
     @Autowired
@@ -44,9 +35,10 @@ public class CustomerDAO {
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
-    public void save(Customer c) {
+    public Customer save(Customer c) {
         Session session = sessionFactory.getCurrentSession();
         session.save(c);
+        return c;
     }
 
     @Transactional(readOnly = true)

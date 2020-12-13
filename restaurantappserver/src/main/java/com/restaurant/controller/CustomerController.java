@@ -43,10 +43,12 @@ public class CustomerController {
 		return customerDAO.getById(id);
 	}
     
-    @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
-    public void addCustomer(@RequestBody Customer c) throws URISyntaxException {
     
-    	customerDAO.save(c);
+    
+    @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
+    public Customer addCustomer(@RequestBody Customer c) throws URISyntaxException {
+    
+    	return customerDAO.save(c);
     }
 
 }
