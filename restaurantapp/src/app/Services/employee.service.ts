@@ -9,7 +9,7 @@ export class EmployeeService {
 }*/
 
 import { Injectable } from '@angular/core';
-import { Employee } from './employee';
+import { Employee } from './../Models/employee';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 

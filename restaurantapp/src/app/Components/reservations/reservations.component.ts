@@ -31,7 +31,7 @@ export class ReservationsComponent implements OnInit{
     // this.getReservations();
   }
 
-  saveReservations(reservationDate: string, reservationTime: number): void {
+  saveReservations(reservationDate: string, reservationTime: string): void {
 
     let reservation: Reservations = {
       reservation_id : 42,

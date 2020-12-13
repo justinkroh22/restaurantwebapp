@@ -10,14 +10,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomersComponent } from './Components/customers/customers.component';
 import { ReservationsComponent } from './Components/reservations/reservations.component';
 
+
 import { ReactiveFormsModule } from '@angular/forms';
+import { EmployeeComponent } from './Components/employees/employee.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomersComponent,
-    ReservationsComponent
+    EmployeeComponent,
+    ReservationsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

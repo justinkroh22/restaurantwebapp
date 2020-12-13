@@ -4,7 +4,7 @@
   <h4>Enter the Date of the Reservation</h4>
   <input type="date" #reservationDate><br />
   <h4>Enter the Hour of your Reservation</h4>
-  <input #reservationTime><br />
+  <input type="number" #reservationTime><br />
 
   <button (click)="saveReservations(reservationDate.value, reservationTime.value);">Submit</button>
 </form>
