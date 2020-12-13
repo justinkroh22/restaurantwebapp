@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { EmployeeClass } from '../employeeclass';
 
+<<<<<<< Updated upstream
 import { EmployeeService } from '../employee.service';
+=======
+import { EmployeeService } from '../../Services/employee.service';
+import { FormBuilder, FormGroup } from "@angular/forms";
+>>>>>>> Stashed changes
 
 
 @Component({
@@ -15,7 +20,7 @@ export class EmployeeComponent implements OnInit {
   title = 'Employee List';
 
   employee: Employee ={
-    //id:1,
+    id:1,
     password: 'passwordtest',
     email: 'emailtest@cc.gmail',
     firstName: 'firstnametest',
@@ -24,9 +29,38 @@ export class EmployeeComponent implements OnInit {
     user_type: 'usertypetest'
   };
 
-  constructor(private employeeService:EmployeeService) { }
+  form: FormGroup;
+
+  constructor(private formBuilder: FormBuilder,private employeeService:EmployeeService) {
+    this.form = this.formBuilder.group({
+      firstName: '',
+      lastName: '',
+      email: '',
+      address: '',
+    })
+   }
 
   employeeList: Employee[] = [];
+
+  submitForm() {
+
+    console.log(this.form.value);
+    
+    console.log(this.form.get('firstName')?.value);
+
+    var firstName = this.form.get('firstName')?.value;
+    var lastName = this.form.get('lastName')?.value;
+    var email = this.form.get('email')?.value;
+    var address = this.form.get('address')?.value;
+
+    let employeeclass: EmployeeClass = new EmployeeClass(firstName, lastName, email, address);
+
+    console.log(employeeclass);
+
+    this.employeeService.saveEmployeeForm(employeeclass)
+    .subscribe((data => {console.log(data.body.customer_id)}));
+  }
+
 
   getEmployees(): void{
     this.employeeService.getEmployees()
