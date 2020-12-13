@@ -17,4 +17,10 @@ export class ReservationsService {
     console.log(this.http.get<Reservations[]>(this.reservationsUrl));
     return this.http.get<Reservations[]>(this.reservationsUrl);
   }
+
+  saveReservations(Reservations: Reservations): Observable<any>{
+    return this.http.post<any>(this.reservationsUrl, Reservations, {
+      observe: 'response'
+    })
+  }
 }
