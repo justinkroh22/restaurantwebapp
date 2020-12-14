@@ -38,9 +38,11 @@ public class EmployeeController {
 	}
     
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
-    public void addEmployee(@RequestBody Employee e) throws URISyntaxException {
+    public Employee addEmployee(@RequestBody Employee e) throws URISyntaxException {
     
-    	employeeDAO.save(e);
+    	//employeeDAO.save(e);
+    	return employeeDAO.save(e);
+    	
     }
     
 
