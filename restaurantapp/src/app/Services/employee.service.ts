@@ -20,7 +20,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class EmployeeService {
 
-  private employeesUrl = 'http://localhost:8081/restaurantappserver/api/employee';
+  private employeesUrl = 'http://localhost:8081/api/employee';
 
   constructor(private http: HttpClient
     

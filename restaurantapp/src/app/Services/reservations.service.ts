@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Reservations } from '../Models/reservations'
+import { Reservations } from '../Models/reservations';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class ReservationsService {
 
   private justinsurl: string = 'http://localhost:8081/restaurantappserver/api/reservations';
 
-  private reservationsUrl = this.justinsurl;
+  private reservationsUrl = 'http://localhost:8081/api/reservations';
 
   constructor(private http: HttpClient) { }
 

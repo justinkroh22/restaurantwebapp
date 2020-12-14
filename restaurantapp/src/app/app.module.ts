@@ -14,6 +14,7 @@ import { ReservationsComponent } from './Components/reservations/reservations.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeComponent } from './Components/employees/employee.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { MenuComponent } from './Components/menu/menu.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
     CustomersComponent,
     EmployeeComponent,
     ReservationsComponent,
-    NavbarComponent
+    NavbarComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

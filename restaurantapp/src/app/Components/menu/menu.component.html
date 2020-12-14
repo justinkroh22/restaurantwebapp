@@ -1,0 +1,15 @@
+<table >
+    <thead>
+        <td>Menu Number</td>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Price</td>
+    </thead>
+    <tbody *ngFor="let item of menuItems">
+            <td>{{item.menu_id}}</td>
+            <td>{{item.itemName}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.price}}</td>
+            <td *ngIf="manager">X</td>
+    </tbody>
+</table>

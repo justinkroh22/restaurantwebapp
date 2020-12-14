@@ -10,13 +10,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CustomersService {
 
-  private customersUrl = 'http://localhost:8081/restaurantappserver/api/customers';
+  private customersUrl = 'http://localhost:8081/api/customers';
 
   constructor(private http: HttpClient
     
     ) { }
 
-  getCustomers(): Observable<Customer[]> {
+  getCustomers(): Observable<Customer[]> {//rename to getAllCustomers?
 
     console.log(this.http.get<Customer[]>(this.customersUrl));
     return this.http.get<Customer[]>(this.customersUrl);

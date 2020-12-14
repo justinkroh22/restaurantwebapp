@@ -7,28 +7,31 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" routerLink="/Customers" routerLinkActive="active">User Info<span class="sr-only">(current)</span></a>
+                <a class="nav-link" routerLink="/Customers" routerLinkActive="active">Customer Info<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/Customers" routerLinkActive="active">View Employees</a>
+                <a class="nav-link" routerLink="/Employee" routerLinkActive="active">View Employees</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="">Policy</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="">About</a>
+                <a class="nav-link" routerLink="/Menu">Menu Items</a>
             </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" routerLink="/Reservation">Reservations</a>
+            </li> -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" routerLink=""  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reimbursements        </a>
+                <a class="nav-link dropdown-toggle" routerLink="/Reservation" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reservations        </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" routerLink="/Customers" routerLinkActive="active">View All Reimbursements</a>
-                    <a class="dropdown-item" routerLink="/Customers" routerLinkActive="active">View User Reimbursements</a>
-                    <a class="dropdown-item" routerLink="/Customers" routerLinkActive="active">Manage Reimbursements</a>
+                    <a class="dropdown-item" routerLink="/Reservation" routerLinkActive="active">Make a Reservation</a>
+                    <a class="dropdown-item" routerLink="/Reservation" routerLinkActive="active">View your Reservation</a>
+                    <a class="dropdown-item" routerLink="/Reservation" routerLinkActive="active">Cancel a Reservation</a>
                 </div>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" routerLink="/Customers" routerLinkActive="active">Log Out</a>
-            </li>
+            </li> -->
         </ul>
     </div>
 
