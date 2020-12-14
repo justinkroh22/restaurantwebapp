@@ -1,21 +1,28 @@
-<p>This page is {{title}}</p>
+<div *ngIf="employee">
+  <h4>Booked Reservations</h4>
+  <table>
+    <thead>
+        <td>Reservation Number</td>
+        <td>Customer ID</td>
+        <td>Reserved Date</td>
+        <td>Reserved Time</td>
+    </thead>
+    <tbody *ngFor="let reservations of reservationsList">
+            <td>{{reservations.reservation_id}}</td>
+            <td>{{reservations.customer_id}}</td>
+            <td>{{reservations.date}}</td>
+            <td>{{reservations.time}}</td>
+    </tbody>
+</table>
+</div>
 
-<form action="api/saveReservations" method="post">
-  <h4>Enter the Date of the Reservation</h4>
-  <input type="date" #reservationDate><br />
-  <h4>Enter the Hour of your Reservation</h4>
-  <input type="number" #reservationTime><br />
+<div *ngIf="!employee">
+  <form action="api/saveReservations" method="post">
+    <h4>Enter the Date of the Reservation</h4>
+    <input type="date" #reservationDate><br />
+    <h4>Enter the Hour of your Reservation</h4>
+    <input type="number" #reservationTime><br />
 
-  <button (click)="saveReservations(reservationDate.value, reservationTime.value);">Submit</button>
-</form>
-
-<!-- <div class="grid grid-pad">
-    <a *ngFor="let the_reservation of reservationsList">
-      <div class="module hero">
-        <h3>Reservation ID: {{the_reservation.reservation_id}}</h3>
-        <h4>Customer ID: {{the_reservation.customer_id}}</h4>
-        <h4>Reservation Date: {{the_reservation.date}}</h4>
-        <h4>Reservation Time:{{the_reservation.time}}</h4>
-      </div>
-    </a>
-  </div> -->
+    <button (click)="saveReservations(reservationDate.value, reservationTime.value);">Submit</button>
+  </form>
+</div>

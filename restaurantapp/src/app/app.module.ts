@@ -18,9 +18,11 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 
 import { EmployeeComponent } from './Components/employees/employee.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { MenuComponent } from './Components/menu/menu.component';
 import { MenuItemsComponent } from './Components/menuitems/menuitems.component';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { CreateOrderComponent } from './Components/create-order/create-order.component';
+
 
 
 
@@ -31,6 +33,7 @@ import { CreateOrderComponent } from './Components/create-order/create-order.com
     EmployeeComponent,
     ReservationsComponent,
     NavbarComponent,
+    MenuComponent,
     MenuItemsComponent,
     OrdersComponent,
     CreateOrderComponent
