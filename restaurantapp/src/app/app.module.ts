@@ -16,6 +16,7 @@ import { EmployeeComponent } from './Components/employees/employee.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { MenuItemsComponent } from './Components/menuitems/menuitems.component';
 import { OrdersComponent } from './Components/orders/orders.component';
+import { CreateOrderComponent } from './Components/create-order/create-order.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { OrdersComponent } from './Components/orders/orders.component';
     ReservationsComponent,
     NavbarComponent,
     MenuItemsComponent,
-    OrdersComponent
+    OrdersComponent,
+    CreateOrderComponent
   ],
   imports: [
     BrowserModule,

@@ -35,17 +35,11 @@ export class CustomersComponent implements OnInit {
       email: '',
       address: '',
 
-
-
     })
 
    }
 
-
   customerList: Customer[] = [];
-
-
-  
 
 
   submitForm() {

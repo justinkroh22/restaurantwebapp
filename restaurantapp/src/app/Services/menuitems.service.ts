@@ -21,6 +21,13 @@ export class MenuItemsService {
     return this.http.get<MenuItemClass[]>(this.menuItemsUrl);
   }
 
+  getMenuItem(id: string): Observable<MenuItemClass> {
+
+    console.log(this.http.get<MenuItemClass>(this.menuItemsUrl + '/m/' + id));
+    return this.http.get<MenuItemClass>(this.menuItemsUrl + '/m/' + id);
+
+  }
+
   saveMenuItem(menuitem: MenuItemClass): Observable<any> {
     return this.http.post<any>(this.menuItemsUrl, menuitem, {
       observe: 'response'
