@@ -9,12 +9,21 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CustomersComponent } from './Components/customers/customers.component';
 import { ReservationsComponent } from './Components/reservations/reservations.component';
+import { EmployeeComponent } from './Components/employees/employee.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { NavbarComponent } from './Components/navbar/navbar.component';
+
 import { EmployeeComponent } from './Components/employees/employee.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { MenuComponent } from './Components/menu/menu.component';
+import { MenuItemsComponent } from './Components/menuitems/menuitems.component';
+import { OrdersComponent } from './Components/orders/orders.component';
+import { CreateOrderComponent } from './Components/create-order/create-order.component';
+
+
 
 
 @NgModule({
@@ -24,7 +33,10 @@ import { MenuComponent } from './Components/menu/menu.component';
     EmployeeComponent,
     ReservationsComponent,
     NavbarComponent,
-    MenuComponent
+    MenuComponent,
+    MenuItemsComponent,
+    OrdersComponent,
+    CreateOrderComponent
   ],
   imports: [
     BrowserModule,

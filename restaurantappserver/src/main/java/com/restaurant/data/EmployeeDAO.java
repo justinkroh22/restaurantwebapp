@@ -24,17 +24,17 @@ public class EmployeeDAO {
     @PostConstruct
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public void initDB() {
-        Employee e = new Employee();
-        e.setEmail("test5@email.com");
-        e.setPassword("testpassword");
-        e.setFirstName("test");
-        e.setLastName("test");
-        e.setAddress("test");
-        e.setUser_type("EMPLOYEE");
-
-        
-       Session session = sessionFactory.openSession();
-       session.save(e);
+//        Employee e = new Employee();
+//        e.setEmail("test5@email.com");
+//        e.setPassword("testpassword");
+//        e.setFirstName("test");
+//        e.setLastName("test");
+//        e.setAddress("test");
+//        e.setUser_type("EMPLOYEE");
+//
+//        
+//       Session session = sessionFactory.openSession();
+//       session.save(e);
     }
 
     @Autowired
@@ -44,9 +44,10 @@ public class EmployeeDAO {
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
-    public void save(Employee e) {
+    public Employee save(Employee e) {
         Session session = sessionFactory.getCurrentSession();
         session.save(e);
+        return e;
     }
 
     @Transactional(readOnly = true)

@@ -1,12 +1,3 @@
-/*import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class EmployeeService {
-
-  constructor() { }
-}*/
 
 import { Injectable } from '@angular/core';
 import { Employee } from './../Models/employee';
@@ -37,5 +28,18 @@ export class EmployeeService {
       observe: 'response'
     });
   }
+
+  //This is how it is done to grab respone data from posts
+  httpOptions: any = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    observe: 'response'
+  };
+
+  saveEmployeeForm(any: any): Observable<any> {
+    return this.http.post<any>(this.employeesUrl, any, this.httpOptions);
+  }
+
 }
 
