@@ -34,7 +34,7 @@ public class MenuItemsController {
     }
     
     
-    @GetMapping(path="m/menuId}", produces = MediaType.APPLICATION_JSON_VALUE) // /api/greetings/x
+    @GetMapping(path="m/{menuId}", produces = MediaType.APPLICATION_JSON_VALUE) // /api/greetings/x
     // where x is some int
 	public MenuItems getMenuItemById(@PathVariable(name="menuId", required = true) Integer id) {
 

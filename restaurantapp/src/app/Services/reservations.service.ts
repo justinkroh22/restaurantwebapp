@@ -8,7 +8,10 @@ import { Reservations } from '../Models/reservations'
 })
 export class ReservationsService {
 
-  private reservationsUrl = 'http://localhost:8081/api/reservations';
+
+  private justinsurl: string = 'http://localhost:8081/restaurantappserver/api/reservations';
+
+  private reservationsUrl = this.justinsurl;
 
   constructor(private http: HttpClient) { }
 

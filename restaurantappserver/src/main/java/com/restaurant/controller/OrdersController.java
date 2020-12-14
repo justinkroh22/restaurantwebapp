@@ -40,6 +40,8 @@ public class OrdersController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Orders> getAllOrders() {
     	
+    	/*
+    	
         Orders o2 = new Orders();
 
 
@@ -61,7 +63,7 @@ public class OrdersController {
         
         ordersDAO.save(o2);
 
-    	
+    	*/
         return ordersDAO.getAll();
     }
     

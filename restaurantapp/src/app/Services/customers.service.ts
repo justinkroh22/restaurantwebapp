@@ -28,7 +28,7 @@ export class CustomersService {
     });
   }
 
-
+//This is how it is done to grab respone data from posts
    httpOptions: any = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
