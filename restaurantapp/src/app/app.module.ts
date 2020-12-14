@@ -9,13 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CustomersComponent } from './Components/customers/customers.component';
 import { ReservationsComponent } from './Components/reservations/reservations.component';
-import { EmployeeComponent } from './Components/employees/employee.component';
-
 
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { NavbarComponent } from './Components/navbar/navbar.component';
-
 import { EmployeeComponent } from './Components/employees/employee.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { MenuComponent } from './Components/menu/menu.component';

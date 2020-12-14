@@ -1,3 +1,5 @@
+<app-customers></app-customers>
+
 <div *ngIf="employee">
   <h4>Booked Reservations</h4>
   <table>
@@ -17,7 +19,7 @@
 </div>
 
 <div *ngIf="!employee">
-  <form action="api/saveReservations" method="post">
+  <form>
     <h4>Enter the Date of the Reservation</h4>
     <input type="date" #reservationDate><br />
     <h4>Enter the Hour of your Reservation</h4>
