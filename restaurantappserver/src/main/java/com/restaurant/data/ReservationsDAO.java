@@ -23,6 +23,8 @@ public class ReservationsDAO {
 
     private SessionFactory sessionFactory;
 
+    
+    /*
     @PostConstruct
     @Transactional
     public void initDB(){
@@ -35,6 +37,8 @@ public class ReservationsDAO {
         Session session = sessionFactory.openSession();
         session.save(r);
     }
+    
+    */
 
     @Autowired
     public ReservationsDAO(SessionFactory sessionFactory) {

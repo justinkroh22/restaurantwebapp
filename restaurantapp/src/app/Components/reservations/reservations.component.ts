@@ -44,6 +44,10 @@ export class ReservationsComponent implements OnInit{
       time : reservationTime
     };
 
+    
+
+
+    
     this.reservationsService.saveReservations(reservation)
       .subscribe(resp => { console.log(resp);});
   }

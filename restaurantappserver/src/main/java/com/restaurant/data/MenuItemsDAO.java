@@ -24,6 +24,8 @@ public class MenuItemsDAO {
     //private final PilotRepo pilotRepo;
     private SessionFactory sessionFactory;
 
+    
+    /*
     @PostConstruct
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public void initDB() {
@@ -39,6 +41,7 @@ public class MenuItemsDAO {
 
     }
 
+	*/
     @Autowired
     public MenuItemsDAO(SessionFactory sessionFactory) {
         System.out.println("Creating Menu Items DAO");

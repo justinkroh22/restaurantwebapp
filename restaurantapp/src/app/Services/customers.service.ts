@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CustomersService {
 
-  private customersUrl = 'http://localhost:8081/api/customers';
+  private customersUrl = 'http://localhost:8081/restaurantappserver/api/customers';
 
   constructor(private http: HttpClient
     

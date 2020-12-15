@@ -22,11 +22,14 @@ public class CustomerDAO {
     //private final PilotRepo pilotRepo;
     private SessionFactory sessionFactory;
 
+    /*
     @PostConstruct
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public void initDB() {
 
     }
+    
+    */
 
     @Autowired
     public CustomerDAO(SessionFactory sessionFactory) {

@@ -21,6 +21,7 @@ public class EmployeeDAO {
 
 	private SessionFactory sessionFactory;
 
+	/*
     @PostConstruct
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public void initDB() {
@@ -36,6 +37,8 @@ public class EmployeeDAO {
 //       Session session = sessionFactory.openSession();
 //       session.save(e);
     }
+
+*/
 
     @Autowired
     public EmployeeDAO(SessionFactory sessionFactory) {

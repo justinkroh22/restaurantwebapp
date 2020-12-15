@@ -63,8 +63,11 @@ public class OrdersController {
         
         ordersDAO.save(o2);
 
+    	
     	*/
         return ordersDAO.getAll();
+        
+        
     }
     
     
@@ -79,6 +82,26 @@ public class OrdersController {
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public void addOrders(@RequestBody Orders o) throws URISyntaxException {
     
+    	Set<MenuItems> actualItemsOrdered = new HashSet<>();
+    	
+    	
+    	
+    	
+    	for (MenuItems m: o.getItemsOrdered() ) {
+    		
+    		actualItemsOrdered.add(menuItemsDAO.getById(m.getMenu_id()));
+    		
+    		
+    	}
+    	
+    	o.getItemsOrdered().clear();
+    	
+    	System.out.println(o.getItemsOrdered());
+    	
+    	o.setItemsOrdered(actualItemsOrdered);
+    	
+    	System.out.println(o.getItemsOrdered());
+    	
     	ordersDAO.save(o);
     }
     

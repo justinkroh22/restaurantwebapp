@@ -27,12 +27,7 @@ export class MenuItemsComponent implements OnInit {
 
    }
 
-
   //customerList: Customer[] = [];
-
-
-  
-
 
   submitForm() {
 
@@ -55,9 +50,6 @@ export class MenuItemsComponent implements OnInit {
     this.menuItemsService.saveMenuItemForm(menuItemObject)
     .subscribe((data => {console.log(data.body)}));
   }
-
-
-
 
 
   ngOnInit(): void {

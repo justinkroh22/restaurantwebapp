@@ -31,6 +31,7 @@ public class OrdersDAO {
     private SessionFactory sessionFactory;
     private final MenuItemsDAO menuItemsDAO;
 
+    /*
     @PostConstruct
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public void initDB() {
@@ -107,9 +108,11 @@ public class OrdersDAO {
         //session.save(o2);
          * 
          * 
-         * */
+         * 
 
     }
+
+	*/
 
     @Autowired
     public OrdersDAO(SessionFactory sessionFactory, MenuItemsDAO menuItemsDAO) {
