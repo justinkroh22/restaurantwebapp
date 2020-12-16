@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.restaurant.models.Customer;
 
-import javax.annotation.PostConstruct;
+//import javax.annotation.PostConstruct;
 import java.sql.SQLException;
 import java.util.List;
 
