@@ -90,7 +90,7 @@ this.authService.login(email, password)
   }
 
   setFirstName(firstName:string){
-    this.authService.setUserType(firstName);
+    this.authService.setFirstName(firstName);
   }
 
 

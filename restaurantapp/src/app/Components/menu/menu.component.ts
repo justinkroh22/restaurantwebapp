@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/auth.service';
 import {MenuItemClass} from '../../Models/menuitemclass';
 import {MenuItemsService} from '../../Services/menuitems.service'
 
@@ -11,13 +13,15 @@ export class MenuComponent implements OnInit {
 
   menuItems: MenuItemClass[] = [];
 
-  public manager = true;
+  public manager: boolean = false;
+  public employee: boolean = false;
+  private redirectUrl: string = '/Menu';
 
-  constructor(private menuItemsService : MenuItemsService) { }
+  constructor(private menuItemsService : MenuItemsService, private authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
     this.getMenuItems();
-    // this.removeMenuItem(14);
+    this.checkUserType();
   }
 
   getMenuItems(): void{
@@ -29,6 +33,19 @@ export class MenuComponent implements OnInit {
     let menu_id: string =id.toString();
     this.menuItemsService.removeMenuItem(menu_id)
       .subscribe(resp => console.log(resp));
+  }
+
+  checkUserType(): void{
+    if(this.authService.isLoggedIn){
+      if(this.authService.user_type=='EMPLOYEE'){
+        this.employee = true;
+      }
+      
+      if(this.authService.user_type=='MANAGER'){
+        this.employee = true;
+        this.manager = true;
+      }
+    }
   }
 
 }

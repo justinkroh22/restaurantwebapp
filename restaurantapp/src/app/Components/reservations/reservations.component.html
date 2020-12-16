@@ -8,12 +8,14 @@
         <td>Customer ID</td>
         <td>Reserved Date</td>
         <td>Reserved Time</td>
+        <td>Status</td>
     </thead>
     <tbody *ngFor="let reservations of reservationsList">
             <td>{{reservations.reservation_id}}</td>
             <td>{{reservations.customer_id}}</td>
             <td>{{reservations.date}}</td>
             <td>{{reservations.time}}</td>
+            <td>{{reservations.status}}</td>
             <button (click)=cancelReservations(reservations.reservation_id)>Cancel Reservation</button>
     </tbody>
 </table>

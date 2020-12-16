@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'Menu/newItem', component: MenuItemsComponent },
   { path: 'Orders/newOrder', component: OrdersComponent },
   { path: 'Orders/CreateNewOrder', component: CreateOrderComponent },
-  { path: 'Login', component: LoginComponent}
+  { path: 'Login', component: LoginComponent},
+  { path: '', component:CustomersComponent}
 
 
 ];
