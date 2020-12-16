@@ -57,6 +57,11 @@ public class Tests {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
+    
+    
+ 
+    
+    
     @Test
     public void getCustomerController_ThenReturnCustomer() throws Exception {
         MvcResult result = mockMvc.perform(get("/customers")) // testing is done without the /api context of the DispatcherServlet f
@@ -73,10 +78,21 @@ public class Tests {
 		System.out.println(result.getResponse().getContentAsString());
         
 		
+		   String json = Json.createObjectBuilder()
+	                .add("key1", "value1")
+	                .add("key2", "value2")
+	                .build()
+	                .toString();
+		   
+		   System.out.println(json);
+		
 		
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
         Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
        
+     
+        
+        
     }
     
     @Test
@@ -212,11 +228,11 @@ public class Tests {
 		System.out.println(sliced_again);
 		System.out.println(Arrays.toString(split));
 		
+
 		String testItem = split[1];	 
 		System.out.println(testItem);
 		
 		String[] passwordarray = testItem.split(":");
-		
 		System.out.println(Arrays.toString(passwordarray));
 		System.out.println(passwordarray[1]);
 		
@@ -228,8 +244,11 @@ public class Tests {
 		
 		int actual = password;
 		
-		int expected = 12345; 
-        
+
+		int expected = 12345;		
+		
+		String x1 = result.getResponse().getContentAsString();
+
 		Assert.assertEquals(actual, expected);
 		
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);

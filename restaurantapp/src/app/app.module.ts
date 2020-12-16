@@ -17,6 +17,7 @@ import { MenuComponent } from './Components/menu/menu.component';
 import { MenuItemsComponent } from './Components/menuitems/menuitems.component';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { CreateOrderComponent } from './Components/create-order/create-order.component';
+import { LoginComponent } from './Components/login/login.component';
 
 
 
@@ -31,7 +32,8 @@ import { CreateOrderComponent } from './Components/create-order/create-order.com
     MenuComponent,
     MenuItemsComponent,
     OrdersComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

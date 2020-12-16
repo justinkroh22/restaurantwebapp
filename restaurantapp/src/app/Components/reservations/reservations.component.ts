@@ -3,6 +3,7 @@ import { Reservations } from '../../Models/reservations';
 import { ReservationsService } from '../../Services/reservations.service';
 import { CustomersService } from '../../Services/customers.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reservations',
@@ -50,6 +51,14 @@ export class ReservationsComponent implements OnInit{
     
     this.reservationsService.saveReservations(reservation)
       .subscribe(resp => { console.log(resp);});
+  }
+
+  cancelReservations(id:any): void{
+    let resID:number = parseInt(id);
+    let status:string = 'Cancelled';
+
+    this.reservationsService.cancelReservation(resID,status)
+      .subscribe(resp => {console.log(resp);});
   }
 
 }

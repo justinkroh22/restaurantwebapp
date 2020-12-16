@@ -9,6 +9,7 @@ import {ReservationsComponent} from './Components/reservations/reservations.comp
 import {MenuItemsComponent} from './Components/menuitems/menuitems.component';
 import {OrdersComponent} from './Components/orders/orders.component';
 import {CreateOrderComponent} from './Components/create-order/create-order.component';
+import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
   { path: 'Customers', component: CustomersComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'Menu', component: MenuComponent},
   { path: 'Menu/newItem', component: MenuItemsComponent },
   { path: 'Orders/newOrder', component: OrdersComponent },
-  { path: 'Orders/CreateNewOrder', component: CreateOrderComponent }
+  { path: 'Orders/CreateNewOrder', component: CreateOrderComponent },
+  { path: 'Login', component: LoginComponent}
 
 
 ];

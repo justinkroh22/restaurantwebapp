@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.restaurant.models.Customer;
 
-import javax.annotation.PostConstruct;
+//import javax.annotation.PostConstruct;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -43,6 +43,23 @@ public class CustomerDAO {
         session.save(c);
         return c;
     }
+    
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
+    public void delete(Customer c) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(c);
+    }
+    
+    
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
+    public void deleteById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        
+        Customer deletedCustomer = getById(id);
+        
+        session.delete(deletedCustomer);
+    }
+    
 
     @Transactional(readOnly = true)
     public Customer getById(int id) {

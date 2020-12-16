@@ -11,7 +11,14 @@ export class ReservationsService {
 
   private justinsurl: string = 'http://localhost:8081/restaurantappserver/api/reservations';
 
-  private reservationsUrl = 'http://localhost:8081/api/reservations';
+  private reservationsUrl = this.justinsurl;
+
+  httpOptions: any = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    observe: 'response'
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -25,5 +32,11 @@ export class ReservationsService {
     return this.http.post<any>(this.reservationsUrl, Reservations, {
       observe: 'response'
     })
+  }
+
+  cancelReservation(id:number, status:string): Observable<any>{
+    let params:string = `?id=${id}&status=${status}`;
+    console.log(params);
+    return this.http.put<any>(this.reservationsUrl + '/u/' + params, this.httpOptions);
   }
 }

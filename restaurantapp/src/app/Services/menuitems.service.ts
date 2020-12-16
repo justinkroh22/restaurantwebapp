@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MenuItemClass } from '../Models/menuitemclass';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 
 @Injectable({
@@ -46,8 +46,10 @@ export class MenuItemsService {
     return this.http.post<any>(this.menuItemsUrl, any, this.httpOptions);
   }
 
-  removeMenuItem(id: string): void{
+  removeMenuItem(id: string): Observable<any>{
     console.log("Menu ID to remove: " + id);
+    console.log(this.menuItemsUrl + '/r/' + id);
+    return this.http.delete<any>(this.menuItemsUrl + '/r/' + id);
   }
 
   // sortList(menuItemsUnsorted:Observable<Menu[]>) : Observable<Menu[]>{
