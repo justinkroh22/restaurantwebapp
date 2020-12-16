@@ -1,14 +1,11 @@
 package com.restaurant.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.restaurant.data.CustomerDAO;
 import com.restaurant.data.EmployeeDAO;
@@ -42,9 +39,19 @@ public class MenuItemsController {
 	}
     
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
-    public void addEmployee(@RequestBody MenuItems m) throws URISyntaxException {
+    public void addMenuItem(@RequestBody MenuItems m) throws URISyntaxException {
     
     	menuItemsDAO.save(m);
+    }
+
+    @DeleteMapping(path="r/{menu_id}")
+    @ResponseBody
+    public ResponseEntity<String> deleteFromMenu(@PathVariable(name="menu_id", required = true) Integer id) throws URISyntaxException{
+        HttpHeaders httpHeaders = new HttpHeaders();
+        System.out.println("Reaching the controller");
+        System.out.println(id);
+        menuItemsDAO.remove(id);
+        return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
     }
     
     

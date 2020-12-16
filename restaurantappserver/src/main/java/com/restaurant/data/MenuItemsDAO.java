@@ -1,12 +1,14 @@
 package com.restaurant.data;
 
+import java.awt.*;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+//import javax.annotation.PostConstruct;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
@@ -52,6 +54,14 @@ public class MenuItemsDAO {
     public void save(MenuItems m) {
         Session session = sessionFactory.getCurrentSession();
         session.save(m);
+    }
+
+    @Transactional
+    public void remove(Integer m){
+        Session session = sessionFactory.getCurrentSession();
+        Query hql = session.createQuery("delete from MenuItems where menu_id=:id");
+        hql.setInteger("id",m);
+        hql.executeUpdate();
     }
 
     @Transactional(readOnly = true)

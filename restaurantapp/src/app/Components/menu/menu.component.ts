@@ -11,12 +11,13 @@ export class MenuComponent implements OnInit {
 
   menuItems: MenuItemClass[] = [];
 
-  public manager = false;
+  public manager = true;
 
   constructor(private menuItemsService : MenuItemsService) { }
 
   ngOnInit(): void {
     this.getMenuItems();
+    // this.removeMenuItem(14);
   }
 
   getMenuItems(): void{
@@ -24,8 +25,10 @@ export class MenuComponent implements OnInit {
         .subscribe(menuItems => this.menuItems = menuItems);
   }
 
-  // removeMenuItem(id: string): void{
-  //   this.menuService.removeMenuItem();
-  // }
+  removeMenuItem(id: any): void{
+    let menu_id: string =id.toString();
+    this.menuItemsService.removeMenuItem(menu_id)
+      .subscribe(resp => console.log(resp));
+  }
 
 }
