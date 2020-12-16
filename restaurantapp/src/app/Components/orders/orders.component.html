@@ -1,6 +1,7 @@
 <p>This page is {{title}}</p>
 
-<div *ngIf="authService.isLoggedIn" class="container">
+
+<div *ngIf="authService.getSessionType()" class="container">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
 
     <div class="form-group input-group-lg">
@@ -24,3 +25,5 @@
       </div>
   </form>
 </div>
+
+<h4>{{authService.getSessionType()}}</h4>

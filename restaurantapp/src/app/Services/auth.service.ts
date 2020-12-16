@@ -47,6 +47,29 @@ export class AuthService {
     // if(user_type==='MANAGER'){console.log(user_type);}
   }
 
+  getSessionType(){
+   var type: any = sessionStorage.getItem('user_type');
+   return type;
+  }
+
+  getUserName(){
+    var username: any = sessionStorage.getItem('firstName');
+    return username;
+  }
+
+
+  setSession(user_type: string, firstName: string) {
+    sessionStorage.setItem('user_type', user_type);
+    sessionStorage.setItem('firstName', firstName);
+
+  }
+
+  removeSession(){
+    sessionStorage.removeItem('user_type');
+    sessionStorage.removeItem('firstName');
+
+  }
+
 
   httpOptions: any = {
     headers: new HttpHeaders({
@@ -66,7 +89,8 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
-    this.user_type = '';
+    this.removeSession();
+
   }
 
 

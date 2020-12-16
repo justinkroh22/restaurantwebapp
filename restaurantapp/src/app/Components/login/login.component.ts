@@ -78,7 +78,10 @@ this.authService.login(email, password)
     this.setUserType(this.userType);
     this.setFirstName(this.firstName);
 
+    
+
     if (this.authService.isLoggedIn){
+      this.authService.setSession(this.userType, this.firstName);
       this.router.navigate([this.authService.redirectUrl]);
     }
     else this.setMessage('You Suck at Loggin in, try again');
@@ -104,10 +107,6 @@ this.authService.login(email, password)
 
     this.message = message;
   }
-
-
-
-
 
   ngOnInit(): void {
   }
