@@ -5,6 +5,7 @@ import { OrderClass } from '../../Models/orderclass';
 import { OrdersService } from '../../Services/orders.service';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MenuItemClass } from 'src/app/Models/menuitemclass';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-orders',
@@ -18,7 +19,7 @@ export class OrdersComponent implements OnInit {
   form: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private ordersService: OrdersService) {
+  constructor(private formBuilder: FormBuilder, private ordersService: OrdersService, public authService: AuthService) {
     this.form = this.formBuilder.group({
       orderType: '',
       billingAddress: '',
@@ -30,7 +31,6 @@ export class OrdersComponent implements OnInit {
 
 
   //customerList: Customer[] = [];
-
 
   
 

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.restaurant.models.Employee;
 
+
 @Repository
 @Transactional
 public class EmployeeDAO {
@@ -58,6 +59,8 @@ public class EmployeeDAO {
         Session session = sessionFactory.getCurrentSession();
         return (Employee) session.get(Employee.class, id);
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
@@ -66,5 +69,39 @@ public class EmployeeDAO {
         Query hql = s.createQuery("From Employee");
         return hql.list();
     }
+    
+    
+    public Employee checkCredentials(String email, String password) {
+    	
+    	boolean correctCredentials = false;
+    	List<Employee> employeeList = null;
+    	Employee employee = null;
+    	
+    	Session s = sessionFactory.getCurrentSession();
+    	
+    	employeeList = s.createQuery("FROM Employee").list(); 
+        for (Employee e: employeeList){ 
+       	 
+       	 if (e.getEmail().equals(email) && e.getPassword().equals(password)) {
+       		 
+       		 correctCredentials = true;
+       		 System.out.println("GOT CORRECT CREDENTIALS");
+       		 employee = e;
+       		 break;
+       		 
+       	 }
+       	 else System.out.println("FAILURE TO GET CORRECT CREDENTIALS");
+        }
+    	
+        System.out.println("did it break");
+        System.out.println(correctCredentials);
+    	
+    	return employee;
+    }
+    
+    
+    
+    
+    
 	
 }

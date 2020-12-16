@@ -16,7 +16,7 @@ export class CustomersComponent implements OnInit {
   title = 'Customer List';
 
   customer: Customer = {
-    id: 1,
+    id: 5,
     password: 'blah',
     firstName: 'Justin',
     lastName: 'Kroh',
@@ -57,8 +57,6 @@ export class CustomersComponent implements OnInit {
 
     console.log(customerclass);
 
-
-
     // This data is returned data after post just use .whatever field
     this.customersService.saveCustomerForm(customerclass)
     .subscribe((data => {console.log(data.body.customer_id)}));
@@ -81,9 +79,18 @@ export class CustomersComponent implements OnInit {
 
   }
 
+  removeCustomer(id: number): void {
+
+      this.customersService.removeCustomer(id)
+      .subscribe(resp => console.log(resp));
+
+  }
+
   ngOnInit(): void {
     this.getCustomers();
-    this.saveCustomer(this.customer);
+    //this.saveCustomer(this.customer);
+
+    this.removeCustomer(22);
   }
 
 }

@@ -39,4 +39,10 @@ export class CustomersService {
   saveCustomerForm(any: any): Observable<any> {
     return this.http.post<any>(this.customersUrl, any, this.httpOptions);
   }
+
+
+  removeCustomer(id: number): Observable<any> {
+
+    return this.http.delete<any>(this.customersUrl + '/d/' + id);
+  }
 }

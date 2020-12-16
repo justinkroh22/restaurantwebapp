@@ -14,6 +14,7 @@ import com.restaurant.data.CustomerDAO;
 import com.restaurant.data.EmployeeDAO;
 import com.restaurant.models.Customer;
 import com.restaurant.models.Employee;
+import com.restaurant.models.Login;
 
 import java.net.URISyntaxException;
 import java.util.List;
@@ -43,6 +44,19 @@ public class EmployeeController {
     	//employeeDAO.save(e);
     	return employeeDAO.save(e);
     	
+    }
+    
+    
+    @PostMapping(path="login", consumes=MediaType.APPLICATION_JSON_VALUE)
+    public Employee checkCredentials(@RequestBody Login login) throws URISyntaxException {
+
+    	
+    	System.out.println(login);
+    	System.out.println(login.getEmail());
+
+
+    	
+    	return employeeDAO.checkCredentials(login.getEmail(), login.getPassword());
     }
     
 

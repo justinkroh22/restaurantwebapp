@@ -85,8 +85,6 @@ public class OrdersController {
     	Set<MenuItems> actualItemsOrdered = new HashSet<>();
     	
     	
-    	
-    	
     	for (MenuItems m: o.getItemsOrdered() ) {
     		
     		actualItemsOrdered.add(menuItemsDAO.getById(m.getMenu_id()));
