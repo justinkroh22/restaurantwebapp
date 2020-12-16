@@ -33,7 +33,7 @@ export class AuthService {
 
   setLogin(correctCredentials: boolean) {
    this.isLoggedIn = correctCredentials;
-   console.log('set logon status' + correctCredentials);
+   console.log('set logon status ' + correctCredentials);
     
   }
 
@@ -44,6 +44,7 @@ export class AuthService {
 
   setUserType(user_type:string){
     this.user_type = user_type;
+    // if(user_type==='MANAGER'){console.log(user_type);}
   }
 
   getSessionType(){

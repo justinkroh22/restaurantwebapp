@@ -3,4 +3,5 @@ export interface Reservations {
     customer_id: number;
     date: string;
     time: string;
+    status: string;
   }

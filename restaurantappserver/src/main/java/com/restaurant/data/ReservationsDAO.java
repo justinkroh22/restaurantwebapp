@@ -67,4 +67,13 @@ public class ReservationsDAO {
         Query hql = s.createQuery("From Reservations");
         return hql.list();
     }
+
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
+    public void changeReservation(Integer id, String status){
+        Session s = sessionFactory.getCurrentSession();
+        Query hql = s.createQuery("Update Reservations set status = :status where reservation_id = :id");
+        hql.setString("status",status);
+        hql.setInteger("id",id);
+        hql.executeUpdate();
+    }
 }

@@ -1,9 +1,10 @@
-<div *ngIf="manager">
+<!-- <div *ngIf="manager">
     <a routerLink="/Menu/newItem">Add Menu Items</a>
 </div>
 
-<a routerLink="/Orders/newOrder">New Order</a>
-
+<a routerLink="/Orders/newOrder">New Order</a> -->
+<button routerLink="/Orders/newOrder">New Order</button>
+<span *ngIf="manager"><button routerLink="/Menu/newItem">Add Menu Item</button></span>
 
 <table >
     <thead>

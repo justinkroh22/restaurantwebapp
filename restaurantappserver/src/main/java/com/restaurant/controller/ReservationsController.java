@@ -41,6 +41,7 @@ public class ReservationsController {
     @ResponseBody
     public void changeReservationStatus(@RequestParam(name="id") Integer id, @RequestParam(name="status") String status){
         System.out.println("Updated Reservation " + id + " Status to " + status);
+        reservationsDAO.changeReservation(id,status);
     }
 
     

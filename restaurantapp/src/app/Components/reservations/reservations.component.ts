@@ -4,6 +4,7 @@ import { ReservationsService } from '../../Services/reservations.service';
 import { CustomersService } from '../../Services/customers.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-reservations',
@@ -14,10 +15,10 @@ export class ReservationsComponent implements OnInit{
 
   title = 'Reservation List';
 
-  public employee = true;//swapping between true and false results in different aspects running.
+  public employee = false;
 
 
-  constructor(private reservationsService: ReservationsService, private customersService: CustomersService, private http: HttpClient) {
+  constructor(private reservationsService: ReservationsService, private customersService: CustomersService, private http: HttpClient, private authService: AuthService) {
     this.customersService = customersService;
   }
 
@@ -34,6 +35,13 @@ export class ReservationsComponent implements OnInit{
 
   ngOnInit(): void {
     this.getReservations();
+    this.checkUserType();
+  }
+
+  checkUserType(): void{
+    if(this.authService.isLoggedIn){
+      this.employee = true;
+    }
   }
 
   saveReservations(reservationDate: string, reservationTime: string): void {
@@ -42,13 +50,10 @@ export class ReservationsComponent implements OnInit{
       reservation_id : -1,//Set as -1 due to Hibernate/SQL generating the ID
       customer_id: 1,//Expand further to grab customer id
       date : reservationDate,
-      time : reservationTime
+      time : reservationTime,
+      status : 'Booked'
     };
 
-    
-
-
-    
     this.reservationsService.saveReservations(reservation)
       .subscribe(resp => { console.log(resp);});
   }

@@ -26,6 +26,9 @@ public class Reservations {
 	
 	@Column(name = "time")
 	private int time;
+
+	@Column(name = "status")
+	private String status;
 	
 	
 	
@@ -80,9 +83,12 @@ public class Reservations {
 	public void setTime(int time) {
 		this.time = time;
 	}
-	
-	
-	
-	
-	
+
+
+
+	public String getStatus() { return status; }
+
+
+
+	public void setStatus(String status) { this.status = status; }
 }

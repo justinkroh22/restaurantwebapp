@@ -89,8 +89,6 @@ export class CustomersComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers();
     //this.saveCustomer(this.customer);
-
-    this.removeCustomer(22);
   }
 
 }
