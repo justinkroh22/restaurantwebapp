@@ -5,5 +5,5 @@ export interface Employee {
     firstName?: string;
     lastName?: string;
     address?: string;
-    user_type?: string;
+    usertype?: string;
   }

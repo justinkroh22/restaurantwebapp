@@ -24,7 +24,7 @@ export class EmployeeComponent implements OnInit {
     firstName: 'firstnametest',
     lastName: 'lastnametest',
     address: 'addresstest',
-    user_type: 'usertypetest'
+    usertype: 'usertypetest',
   };
 
   form: FormGroup;
@@ -35,6 +35,8 @@ export class EmployeeComponent implements OnInit {
       lastName: '',
       email: '',
       address: '',
+      password: '',
+      usertype: ''
     })
    }
 
@@ -50,13 +52,16 @@ export class EmployeeComponent implements OnInit {
     var lastName = this.form.get('lastName')?.value;
     var email = this.form.get('email')?.value;
     var address = this.form.get('address')?.value;
+    var password = this.form.get('password')?.value;
+    var usertype = this.form.get('usertype')?.value;
 
-    let employeeclass: EmployeeClass = new EmployeeClass(firstName, lastName, email, address);
+    let employeeclass: EmployeeClass = new EmployeeClass(firstName, lastName, email, address, password, usertype);
 
     console.log(employeeclass);
 
     this.employeeService.saveEmployeeForm(employeeclass)
-    .subscribe((data => {console.log(data.body.customer_id)}));
+    .subscribe((data => {console.log(data.body)}));
+    //.subscribe((data => {console.log(data.body.employee_id)}));
   }
 
 
@@ -66,14 +71,14 @@ export class EmployeeComponent implements OnInit {
 
   }
 
-  saveEmployee(employee: Employee): void{
-    this.employeeService.saveEmployee(employee)
-    .subscribe(rep => console.log(rep));
-  }
+  // saveEmployee(employee: Employee): void{
+  //   this.employeeService.saveEmployee(employee)
+  //   .subscribe(rep => console.log(rep));
+  // }
 
   ngOnInit(): void {
     this.getEmployees();
-    this.saveEmployee(this.employee);
+    //this.saveEmployee(this.employee);
   }
 
 }
