@@ -20,11 +20,23 @@ import com.restaurant.controller.EmployeeController;
 import com.restaurant.controller.MenuItemsController;
 import com.restaurant.controller.OrdersController;
 import com.restaurant.controller.ReservationsController;
+import com.restaurant.models.Customer;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+//import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+//
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder.*;
+
+
+
 
 
 
@@ -48,6 +60,9 @@ public class Tests {
     @Autowired
     CustomerController controller;
     
+    
+    Customer c;
+    
     MockMvc mockMvc;
     
 //*****************Testing for CustomerController********************************    
@@ -55,12 +70,17 @@ public class Tests {
     @Before
     public void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+        
+//        c = new Customer();
+//        c.setEmail("test");
+//        c.setFirstName("test");
+//        c.setLastName("test");
+//        c.setAddress("test");
+        
+
+        
     }
 
-    
-    
- 
-    
     
     @Test
     public void getCustomerController_ThenReturnCustomer() throws Exception {
@@ -72,26 +92,17 @@ public class Tests {
         		.andExpect(status().isOk())
                 .andReturn();
         
-		System.out.println(result.getResponse().getHeader("Content-Type"));
-		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+
+        int actual = result.getResponse().getStatus(); 
 		
-		System.out.println(result.getResponse().getContentAsString());
+		int expected = 200;
         
-		
-		   String json = Json.createObjectBuilder()
-	                .add("key1", "value1")
-	                .add("key2", "value2")
-	                .build()
-	                .toString();
-		   
-		   System.out.println(json);
-		
+		Assert.assertEquals(actual, expected);
 		
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
         Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
        
-     
-        
+
         
     }
     
@@ -140,34 +151,42 @@ public class Tests {
   //*****************Testing for CustomerController for Post method********************************    
 
 
-//    @Test
-//    public void getCustomerController_ThenAddCustomer() throws Exception {
-//        MvcResult result = mockMvc.perform(post("/customers")) // testing is done without the /api context of the DispatcherServlet f
-//        
-//
-//        		// from web.xml. The tests startup their own context not from the
-//        		.andDo(print())
-//        		.andExpect(status().isOk())
-//                .andReturn();
-//        
-//		System.out.println(result.getResponse().getHeader("Content-Type"));
-//		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
-//		
-//		System.out.println(result.getResponse().getStatus());
-//		
-//		int actual = result.getResponse().getStatus(); 
-//		
-//		int expected = 200;
-//        
-//		Assert.assertEquals(actual, expected);
-//        
-//		
-//		
-//		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
-//        Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
-//       
-//    }
-//    
+    
+    
+    
+	String json = Json.createObjectBuilder()
+            .add("password", "12345")
+            .add("email", "test")
+            .add("firstName", "test")
+            .add("lastName", "test")
+            .add("address", "test")
+            .build()
+            .toString();
+
+	
+    @Test 
+    public void getCustomerController_ThenAddCustomer() throws Exception {
+    	
+    	System.out.println("DOING TEST METHOD");
+    	
+        MvcResult result = mockMvc.perform(post("/customers") 
+        		.contentType(MediaType.APPLICATION_JSON_VALUE).content(json))
+        		.andDo(print())
+        		.andExpect(status().isOk())
+                .andReturn();
+
+		
+		System.out.println(result.getResponse().getStatus());
+		
+		int actual = result.getResponse().getStatus(); 
+		
+		int expected = 200;
+        
+		Assert.assertEquals(actual, expected);
+        
+       
+    }
+    
     
 //*****************Testing for EmployeeController********************************
  
@@ -291,7 +310,7 @@ public class Tests {
   
   @Test
   public void getMenuItemsController_ThenReturnSpecificMenuItems() throws Exception {
-      MvcResult result = mockMvc.perform(get("/menuitems/m/4")) // testing is done without the /api context of the DispatcherServlet f
+      MvcResult result = mockMvc.perform(get("/menuitems/m/1")) // testing is done without the /api context of the DispatcherServlet f
       
 
       		// from web.xml. The tests startup their own context not from the
@@ -327,7 +346,7 @@ public class Tests {
 		
 		String actual = slicedPassword;	
 		
-		String expected = "burger";
+		String expected = "cheeseburger";
       
 		Assert.assertEquals(actual, expected);
 		
@@ -341,10 +360,7 @@ public class Tests {
   @Autowired
   OrdersController controllerOrder;
 
-  @Before
-  public void setupOrder() {
-      mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-  }
+
 
   @Test
   public void getOrdersController_ThenReturnOrder() throws Exception {
@@ -420,10 +436,6 @@ public class Tests {
   @Autowired
   ReservationsController controllerReservation;
 
-  @Before
-  public void setupResrv() {
-      mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-  }
 
   @Test
   public void getReservationsController_ThenReturnReservation() throws Exception {
