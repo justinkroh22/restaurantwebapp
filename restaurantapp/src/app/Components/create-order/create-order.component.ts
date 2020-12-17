@@ -254,7 +254,7 @@ export class CreateOrderComponent implements OnInit {
     var deliveryAddress = this.orderForm2.get('deliveryAddress')?.value;
     var billingAddress = this.orderForm2.get('billingAddress')?.value;
 
-    var status: string = 'pending';
+    var status: string = 'PENDING';
     //var customer_id: number = 3;    
     //let menuItemObject1: MenuItemClass = new MenuItemClass('pizza', 'pepporonia pizza', 23.34);
     //let menuItemObject2: MenuItemClass = new MenuItemClass('calzone', 'peperoni', 12.34);

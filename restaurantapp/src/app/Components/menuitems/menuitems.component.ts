@@ -49,6 +49,8 @@ export class MenuItemsComponent implements OnInit {
     // This data is returned data after post just use .whatever field
     this.menuItemsService.saveMenuItemForm(menuItemObject)
     .subscribe((data => {console.log(data.body)}));
+
+    window.location.reload();
   }
 
 

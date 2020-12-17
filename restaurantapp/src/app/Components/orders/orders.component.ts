@@ -32,8 +32,7 @@ export class OrdersComponent implements OnInit {
       deliveryAddress: ''
 
     })
-
-   }
+  }
 
 
   //customerList: Customer[] = [];
@@ -46,7 +45,6 @@ export class OrdersComponent implements OnInit {
     .subscribe(orderList => this.orderList = orderList,  error => {console.log(error)}, () => console.log(this.orderList));
 
     console.log(this.orderList);
-
   }
 
 
@@ -59,6 +57,8 @@ export class OrdersComponent implements OnInit {
     this.message = 'Updated Pending Status for Order' + order_id.innerHTML;
 
     this.getMenuItems();
+
+    window.location.reload();
   }
 
   updateStatusDELIVERED(order_id: any){
@@ -69,6 +69,8 @@ export class OrdersComponent implements OnInit {
     this.message = 'Updated Delivered Status for Order' + order_id.innerHTML;
 
     this.getMenuItems();
+
+    window.location.reload();
   }
 
   updateStatusCANCELED(order_id: any){
@@ -79,6 +81,8 @@ export class OrdersComponent implements OnInit {
     this.message = 'Updated Canceled Status for Order' + order_id.innerHTML;
 
     this.getMenuItems();
+
+    window.location.reload();
   }
 
 
@@ -106,8 +110,6 @@ export class OrdersComponent implements OnInit {
        deliveryAddress, billingAddress, itemsOrdered);
 
     console.log(orderObject);
-
-
 
     // This data is returned data after post just use .whatever field
     this.ordersService.saveOrderForm(orderObject)
