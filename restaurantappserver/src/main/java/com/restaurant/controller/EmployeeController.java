@@ -28,20 +28,22 @@ public class EmployeeController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Employee> getAllEmployees() {
+    	System.out.println("Get all employee");
         return employeeDAO.getAll();
     }
     
     @GetMapping(path="e/{employeeId}", produces = MediaType.APPLICATION_JSON_VALUE) // /api/greetings/x
     // where x is some int
 	public Employee getEmployeeById(@PathVariable(name="employeeId", required = true) Integer id) {
-
+    	
+    	System.out.println(id);
 		return employeeDAO.getById(id);
 	}
     
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public Employee addEmployee(@RequestBody Employee e) throws URISyntaxException {
     
-    	//employeeDAO.save(e);
+    	System.out.println(e);
     	return employeeDAO.save(e);
     	
     }
