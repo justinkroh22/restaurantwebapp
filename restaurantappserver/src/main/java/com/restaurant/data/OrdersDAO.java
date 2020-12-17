@@ -140,6 +140,15 @@ public class OrdersDAO {
         Query hql = s.createQuery("From Orders");
         return hql.list();
     }
+    
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
+    public void updateOrderStatus(Integer id, String status){
+        Session s = sessionFactory.getCurrentSession();
+        Query hql = s.createQuery("Update Orders set status = :status where order_id = :id");
+        hql.setString("status",status);
+        hql.setInteger("id",id);
+        hql.executeUpdate();
+    }
 	
 	
 }

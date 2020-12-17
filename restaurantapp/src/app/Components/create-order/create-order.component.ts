@@ -66,6 +66,8 @@ export class CreateOrderComponent implements OnInit {
 
   menuItem2?: MenuItemClass;
 
+  orderPrice: number = 0;
+
   getMenuItems(): void {
 
     this.menuItemservice.getMenuItems()
@@ -85,6 +87,67 @@ export class CreateOrderComponent implements OnInit {
   }
 
 
+
+  removeItemFromOrderList2(menuID: any, itemName: any, description: any, price:any) {
+
+    console.log(menuID.innerHTML);
+    console.log(itemName.innerHTML);
+    console.log(description.innerHTML);
+    console.log(price.innerHTML);
+
+   
+    //this.menuItemservice.getMenuItem(menuID.innerHTML)
+    //.subscribe(m => this.m = m);
+
+    //if (this.m != null){
+    //this.orderList.push(this.m);
+    // }
+
+    let index = 0;
+
+    for (let item of this.orderList) {
+
+
+
+      if (item.menu_id == menuID.innerHTML) {
+
+        console.log(item.menu_id);
+        this.orderList.splice(index, 1);
+
+        console.log('removing');
+        this.orderPrice = this.calculatePrice();
+        break;
+      }
+
+      index = +index + 1;
+
+    }
+   
+    //this.orderList.push(new MenuItemClass(itemName.value, description.value, price.value, menuID.value));
+  }
+
+
+
+
+  calculatePrice(){
+
+    let calculatedPrice: number = 0;
+
+    for (let item of this.orderList) {
+
+      console.log(item.price);
+
+
+      calculatedPrice = +calculatedPrice + +item.price;
+
+      console.log(calculatedPrice);
+    }
+
+    return calculatedPrice;
+
+  }
+
+/*
   addItemToOrderList(menuID: any) {
 
     console.log(menuID.innerHTML);
@@ -101,7 +164,7 @@ export class CreateOrderComponent implements OnInit {
 
     //this.orderList.push(new MenuItemClass(itemName.value, description.value, price.value, menuID.value));
   }
-
+*/
   addItemToOrderList2(menuID: any, itemName: any, description: any, price:any) {
 
     console.log(menuID.innerHTML);
@@ -119,10 +182,11 @@ export class CreateOrderComponent implements OnInit {
 
     this.orderList.push(new MenuItemClass(itemName.innerHTML, description.innerHTML, price.innerHTML, menuID.innerHTML));
 
+    this.orderPrice = this.calculatePrice();
     //this.orderList.push(new MenuItemClass(itemName.value, description.value, price.value, menuID.value));
   }
   
-
+/*
   submitCustomerForm() {
 
     console.log(this.customerForm.value);
@@ -146,6 +210,8 @@ export class CreateOrderComponent implements OnInit {
 
   }
 
+ */ 
+/*
   submitOrderForm() {
 
     console.log(this.orderForm.value);
@@ -180,7 +246,7 @@ export class CreateOrderComponent implements OnInit {
 
   }
 
-
+*/
 
   submitOrderData(c_id: number) {
 

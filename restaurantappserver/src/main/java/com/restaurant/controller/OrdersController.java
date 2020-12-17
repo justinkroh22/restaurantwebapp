@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restaurant.data.CustomerDAO;
@@ -21,6 +24,7 @@ import com.restaurant.models.MenuItems;
 import com.restaurant.models.Orders;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -82,7 +86,10 @@ public class OrdersController {
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public void addOrders(@RequestBody Orders o) throws URISyntaxException {
     
-    	Set<MenuItems> actualItemsOrdered = new HashSet<>();
+    	
+    	// Duplicate Items cannot exist in the same session
+    	
+    	List<MenuItems> actualItemsOrdered = new ArrayList<MenuItems>();
     	
     	
     	for (MenuItems m: o.getItemsOrdered() ) {
@@ -91,6 +98,10 @@ public class OrdersController {
     		
     		
     	}
+    	
+    	System.out.println(o);
+    	
+    	System.out.println(o.getOrder_id());
     	
     	o.getItemsOrdered().clear();
     	
@@ -104,6 +115,12 @@ public class OrdersController {
     }
     
     
+    @RequestMapping(method=RequestMethod.PUT,path="/u/")
+    @ResponseBody
+    public void updateOrderStatus(@RequestParam(name="id") Integer id, @RequestParam(name="status") String status){
+        System.out.println("Updated Order " + id + " Status to " + status);
+        ordersDAO.updateOrderStatus(id,status);
+    }
     
     
     

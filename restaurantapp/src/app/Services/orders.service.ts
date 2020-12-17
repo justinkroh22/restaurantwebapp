@@ -35,4 +35,11 @@ export class OrdersService {
   saveOrderForm(any: any): Observable<any> {
     return this.http.post<any>(this.ordersUrl, any, this.httpOptions);
   }
+
+  updateStatus(id:number, status:string): Observable<any>{
+    let params:string = `?id=${id}&status=${status}`;
+    console.log(params);
+    return this.http.put<any>(this.ordersUrl + '/u/' + params, this.httpOptions);
+  }
 }
+

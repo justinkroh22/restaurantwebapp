@@ -10,6 +10,7 @@ import {MenuItemsComponent} from './Components/menuitems/menuitems.component';
 import {OrdersComponent} from './Components/orders/orders.component';
 import {CreateOrderComponent} from './Components/create-order/create-order.component';
 import { LoginComponent } from './Components/login/login.component';
+import {HomepageComponent} from './Components/homepage/homepage.component';
 
 const routes: Routes = [
   { path: 'Customers', component: CustomersComponent },
@@ -18,10 +19,10 @@ const routes: Routes = [
 
   { path: 'Menu', component: MenuComponent},
   { path: 'Menu/newItem', component: MenuItemsComponent },
-  { path: 'Orders/newOrder', component: OrdersComponent },
+  { path: 'Orders/ManageOrders', component: OrdersComponent },
   { path: 'Orders/CreateNewOrder', component: CreateOrderComponent },
   { path: 'Login', component: LoginComponent},
-  { path: '', component:CustomersComponent}
+  { path: '', component: HomepageComponent}
 
 
 ];

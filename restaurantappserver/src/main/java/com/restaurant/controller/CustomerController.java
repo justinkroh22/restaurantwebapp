@@ -88,7 +88,7 @@ public class CustomerController {
     	
     	customerDAO.deleteById(userId);
     	
-    	
+    	System.out.println();
     	
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
 

@@ -18,10 +18,6 @@ import com.restaurant.utils.DatabaseConnection;
 public class Main {
 
 	
-	// DatabaseConnection databaseconnection = new DatabaseConnection();
-	
-	private CustomerDAO customerDAO;
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -35,17 +31,6 @@ public class Main {
         ApplicationContext ac = new ClassPathXmlApplicationContext("WEB-INF/application-context.xml");
         Main main = ac.getBean(Main.class);
 
-        Customer c = new Customer();
-        c.setEmail("test@email.com");
-        c.setPassword("testpassword");
-        c.setFirstName("test");
-        c.setLastName("test");
-        c.setAddress("test");
-
-
-        main.customerDAO.save(c);
-
-        System.out.println(main.customerDAO.getById(1));
 
 
         ((AbstractApplicationContext)ac).close();
@@ -56,31 +41,7 @@ public class Main {
 
 	}
 
-	public CustomerDAO getCustomerDAO() {
-		return customerDAO;
-	}
 
-	public void setCustomerDAO(CustomerDAO customerDAO) {
-		this.customerDAO = customerDAO;
-	}
 	
-	
-	
-	
-	
-	/*
-	
-	
-    public void testConnection() {
-    	
-		SessionFactory factory = databaseconnection.getFactory();
-		Session session = factory.openSession();
-		session.close();
-		factory.close();
-    	
-    	
-    }
-    
-    */
 
 }

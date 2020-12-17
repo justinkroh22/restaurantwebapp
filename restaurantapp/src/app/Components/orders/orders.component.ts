@@ -16,8 +16,14 @@ export class OrdersComponent implements OnInit {
 
   title ='Orders Page';
 
+  pendingResponse: any;
+
   form: FormGroup;
 
+  message: string = 'Click the buttons to update the corresponding order';
+
+
+  orderList?: OrderClass [];
 
   constructor(private formBuilder: FormBuilder, private ordersService: OrdersService, public authService: AuthService) {
     this.form = this.formBuilder.group({
@@ -33,6 +39,48 @@ export class OrdersComponent implements OnInit {
   //customerList: Customer[] = [];
 
   
+
+  getMenuItems(): void {
+
+    this.ordersService.getOrders()
+    .subscribe(orderList => this.orderList = orderList,  error => {console.log(error)}, () => console.log(this.orderList));
+
+    console.log(this.orderList);
+
+  }
+
+
+
+  updateStatusPENDING(order_id: any){
+
+    this.ordersService.updateStatus(order_id.innerHTML, 'PENDING')
+    .subscribe(pendingResponse => this.pendingResponse = pendingResponse,  error => {console.log(error)}, () => {console.log(this.pendingResponse), this.getMenuItems()});
+
+    this.message = 'Updated Pending Status for Order' + order_id.innerHTML;
+
+    this.getMenuItems();
+  }
+
+  updateStatusDELIVERED(order_id: any){
+
+    this.ordersService.updateStatus(order_id.innerHTML, 'DELIVERED')
+    .subscribe(pendingResponse => this.pendingResponse = pendingResponse,  error => {console.log(error)}, () => {console.log(this.pendingResponse), this.getMenuItems()});
+
+    this.message = 'Updated Delivered Status for Order' + order_id.innerHTML;
+
+    this.getMenuItems();
+  }
+
+  updateStatusCANCELED(order_id: any){
+
+    this.ordersService.updateStatus(order_id.innerHTML, 'CANCELED')
+    .subscribe(pendingResponse => this.pendingResponse = pendingResponse,  error => {console.log(error)}, () => {console.log(this.pendingResponse), this.getMenuItems()});
+
+    this.message = 'Updated Canceled Status for Order' + order_id.innerHTML;
+
+    this.getMenuItems();
+  }
+
 
 
   submitForm() {
@@ -69,6 +117,8 @@ export class OrdersComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.getMenuItems();
   }
 
 }
