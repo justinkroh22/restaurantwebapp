@@ -10,10 +10,7 @@ import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 
-
-
 export class AuthService {
-
 
   private employeesUrl = 'http://localhost:8081/restaurantappserver/api/employee/login';
 
@@ -44,7 +41,6 @@ export class AuthService {
 
   setUserType(user_type:string){
     this.user_type = user_type;
-    // if(user_type==='MANAGER'){console.log(user_type);}
   }
 
   getSessionType(){
@@ -92,9 +88,4 @@ export class AuthService {
     this.removeSession();
 
   }
-
-
-
-
-
 }

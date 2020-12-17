@@ -13,15 +13,10 @@ export class MenuComponent implements OnInit {
 
   menuItems: MenuItemClass[] = [];
 
-  public manager: boolean = false;
-  public employee: boolean = false;
-  private redirectUrl: string = '/Menu';
-
   constructor(private menuItemsService : MenuItemsService, private authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
     this.getMenuItems();
-    this.checkUserType();
   }
 
   getMenuItems(): void{
@@ -33,19 +28,8 @@ export class MenuComponent implements OnInit {
     let menu_id: string =id.toString();
     this.menuItemsService.removeMenuItem(menu_id)
       .subscribe(resp => console.log(resp));
-  }
-
-  checkUserType(): void{
-    if(this.authService.isLoggedIn){
-      if(this.authService.user_type=='EMPLOYEE'){
-        this.employee = true;
-      }
-      
-      if(this.authService.user_type=='MANAGER'){
-        this.employee = true;
-        this.manager = true;
-      }
-    }
+    
+      window.location.reload();
   }
 
 }

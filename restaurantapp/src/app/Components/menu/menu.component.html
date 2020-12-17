@@ -1,10 +1,4 @@
-<!-- <div *ngIf="manager">
-    <a routerLink="/Menu/newItem">Add Menu Items</a>
-</div>
-
-<a routerLink="/Orders/newOrder">New Order</a> -->
-<button routerLink="/Orders/newOrder">New Order</button>
-<span *ngIf="manager"><button routerLink="/Menu/newItem">Add Menu Item</button></span>
+<button routerLink="/Menu/newItem">Add Menu Item</button>
 
 <table >
     <thead>
@@ -12,15 +6,12 @@
         <td>Name</td>
         <td>Description</td>
         <td>Price</td>
-        <td *ngIf="manager">Remove Item</td>
     </thead>
     <tbody *ngFor="let item of menuItems">
             <td>{{item.menu_id}}</td>
             <td>{{item.itemName}}</td>
             <td>{{item.description}}</td>
             <td>{{item.price}}</td>
-            <td *ngIf="manager">
-                <button (click)=removeMenuItem(item.menu_id)>X</button>
-            </td>
+            <td><button (click)=removeMenuItem(item.menu_id)>Remove Item</button></td>
     </tbody>
 </table>

@@ -13,7 +13,6 @@
 <div class="container d-flex justify-content-center">
   <table >
       <thead>
-          <!--<td>Menu Number</td>-->
           <td>Order ID</td>
           <td>Customer ID</td>
           <td>Order Type</td>
@@ -22,7 +21,6 @@
           <td>Billing Address</td>
       </thead>
       <tbody *ngFor="let order of orderList">
-
               <td #orderID>{{order.order_id}}</td>
               <td #customerID>{{order.customer_id}}</td>
               <td #orderType>{{order.orderType}}</td>
@@ -34,40 +32,4 @@
               <td><button (click)="updateStatusCANCELED(orderID);">CANCELED</button></td>
       </tbody>
   </table>
-  </div>
-
-
-
-
-
-
-<!--
-
-<div *ngIf="authService.getSessionType()" class="container">
-  <form [formGroup]="form" (ngSubmit)="submitForm()">
-
-    <div class="form-group input-group-lg">
-          <input class="form-control" type = "text" placeholder="DELIVERY, INHOUSE, PICKUP" formControlName="orderType">
-    </div>
-
-    No Status Field-->
-
-    <!-- No customer ID
-
-    <div class="form-group input-group-lg">
-        <input class="form-control" type = "text" placeholder="Delivery Address" formControlName="deliveryAddress">
-    </div>
-
-    <div class="form-group input-group-lg">
-      <input class="form-control" type = "text" placeholder="Billing Address" formControlName="billingAddress">
-    </div>
-
-      <div class="form-group">
-          <button class="btn btn-danger btn-block btn-lg">Submit</button>
-      </div>
-  </form>
 </div>
-
--->
-
-<h4>{{authService.getSessionType()}}</h4>
