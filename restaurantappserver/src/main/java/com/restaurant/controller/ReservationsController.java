@@ -35,7 +35,9 @@ public class ReservationsController {
 
      * */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Reservations> getAllReservations() {return reservationsDAO.getAll();}
+    public List<Reservations> getAllReservations() {
+    	System.out.println("Returning all reservations");
+    	return reservationsDAO.getAll();}
     
     
 	/**
@@ -49,7 +51,9 @@ public class ReservationsController {
     // where x is some int
 	public Reservations getReservationById(@PathVariable(name="reservationId", required = true) Integer id) {
 
-		return reservationsDAO.getById(id);
+    	System.out.println(id);
+    	return reservationsDAO.getById(id); 
+		
 	}
     
     /**
@@ -61,7 +65,8 @@ public class ReservationsController {
 	 * */
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public void addCustomer(@RequestBody Reservations r) throws URISyntaxException {
-    
+    	
+    	System.out.println(r);
     	reservationsDAO.save(r);
     }
 

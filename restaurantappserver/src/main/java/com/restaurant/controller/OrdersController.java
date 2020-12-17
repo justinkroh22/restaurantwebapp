@@ -61,6 +61,9 @@ public class OrdersController {
     public List<Orders> getAllOrders() {
 
     	
+
+    	System.out.println("Get all orders");
+
         return ordersDAO.getAll();
         
         
@@ -77,7 +80,8 @@ public class OrdersController {
     @GetMapping(path="o/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE) // /api/greetings/x
     // where x is some int
 	public Orders getOrdersById(@PathVariable(name="orderId", required = true) Integer id) {
-
+    	
+    	System.out.println(id);
 		return ordersDAO.getById(id);
 	}
     
@@ -117,6 +121,7 @@ public class OrdersController {
     	
     	System.out.println(o.getItemsOrdered());
     	
+    	System.out.println(o);
     	ordersDAO.save(o);
     }
     

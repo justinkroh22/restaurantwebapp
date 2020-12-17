@@ -12,6 +12,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -35,10 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder.*;
 
-
-
-
-
+import java.io.StringWriter;
 
 ////import static MockMvcRequestBuilders.*;
 //import static MockMvcResultMatchers.*;
@@ -48,6 +48,10 @@ import java.util.Arrays;
 import java.util.Date;
 
 import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -77,11 +81,9 @@ public class Tests {
 //        c.setLastName("test");
 //        c.setAddress("test");
         
-
-        
     }
 
-    
+//*****************Testing for CustomerControlle's getAllCustomers method******************************** 
     @Test
     public void getCustomerController_ThenReturnCustomer() throws Exception {
         MvcResult result = mockMvc.perform(get("/customers")) // testing is done without the /api context of the DispatcherServlet f
@@ -105,7 +107,7 @@ public class Tests {
 
         
     }
-    
+//*****************Testing for CustomerController's getCustomerById method******************************** 
     @Test
     public void getCustomerController_ThenReturnSpecificCustomer() throws Exception {
         MvcResult result = mockMvc.perform(get("/customers/c/1")) // testing is done without the /api context of the DispatcherServlet f
@@ -148,11 +150,9 @@ public class Tests {
        
     }
     
-  //*****************Testing for CustomerController for Post method********************************    
 
+//*****************Testing for CustomerController's addCustomer method********************************    
 
-    
-    
     
 	String json = Json.createObjectBuilder()
             .add("password", "12345")
@@ -167,7 +167,6 @@ public class Tests {
     @Test 
     public void getCustomerController_ThenAddCustomer() throws Exception {
     	
-    	System.out.println("DOING TEST METHOD");
     	
         MvcResult result = mockMvc.perform(post("/customers") 
         		.contentType(MediaType.APPLICATION_JSON_VALUE).content(json))
@@ -176,13 +175,14 @@ public class Tests {
                 .andReturn();
 
 		
-		System.out.println(result.getResponse().getStatus());
+		System.out.println(result.getResponse().getStatus()); 
 		
 		int actual = result.getResponse().getStatus(); 
 		
 		int expected = 200;
         
 		Assert.assertEquals(actual, expected);
+		
         
        
     }
@@ -198,6 +198,9 @@ public class Tests {
     public void setupEmp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
+    
+//*****************Testing for EmployeeController's getAllEmployees method********************************    
+
 
     @Test
     public void getEmployeeController_ThenReturnEmployee() throws Exception {
@@ -209,17 +212,19 @@ public class Tests {
         		.andExpect(status().isOk())
                 .andReturn();
         
-		System.out.println(result.getResponse().getHeader("Content-Type"));
-		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+        int actual = result.getResponse().getStatus();  
 		
-		System.out.println(result.getResponse().getContentAsString());
+		int expected = 200;
         
-		
+		Assert.assertEquals(actual, expected);
 		
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
         Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
        
     }
+    
+//*****************Testing for EmployeeController's getEmployeeById method********************************    
+
     
     @Test
     public void getEmployeeController_ThenReturnSpecificEmployee() throws Exception {
@@ -228,46 +233,32 @@ public class Tests {
 
         		// from web.xml. The tests startup their own context not from the
         		.andDo(print())
-        		.andExpect(status().isOk())
+        		.andExpect(status().isOk()) 
                 .andReturn();
         
 		System.out.println(result.getResponse().getHeader("Content-Type"));
 		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
 		System.out.println(result.getResponse().getContentAsString());
 		
-		String x = result.getResponse().getContentAsString();
+		String databaseResponse = result.getResponse().getContentAsString().toString(); 
+		System.out.println("*************************************");
 		
-		String slice = x.substring(1);
+		String json = Json.createObjectBuilder()
+	            .add("employee_id", 1)
+	            .add("password", "12345")
+	            .add("email", "test12345")
+	            .add("firstName", "test")
+	            .add("lastName", "test")
+	            .add("address", "test")
+	            .add("user_type", "MANAGER")
+	            .build()
+	            .toString();
+		System.out.println(json);
 		
-		String sliced_again = slice.substring(0, slice.length() - 1);
+		String actual = databaseResponse;
 		
-		String[] split = sliced_again.split(",");
-		
-		System.out.println(slice);
-		System.out.println(sliced_again);
-		System.out.println(Arrays.toString(split));
-		
-
-		String testItem = split[1];	 
-		System.out.println(testItem);
-		
-		String[] passwordarray = testItem.split(":");
-		System.out.println(Arrays.toString(passwordarray));
-		System.out.println(passwordarray[1]);
-		
-		String slicedPassword = passwordarray[1].substring(1, passwordarray[1].length() -1);
-		
-		int password = Integer.parseInt(slicedPassword);
-		
-		System.out.println(password);
-		
-		int actual = password;
-		
-
-		int expected = 12345;		
-		
-		String x1 = result.getResponse().getContentAsString();
-
+		String expected = json;
+        
 		Assert.assertEquals(actual, expected);
 		
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
@@ -275,6 +266,42 @@ public class Tests {
        
     }
     
+    
+    
+    
+//*****************Testing for EmployeeController's addEmployee method********************************   
+    
+	String jsonEmp = Json.createObjectBuilder()
+            .add("password", "12345")
+            .add("email", "test12345")
+            .add("firstName", "test")
+            .add("lastName", "test")
+            .add("address", "test")
+            .add("user_type", "MANAGER")
+            .build()
+            .toString();
+	
+	@Test 
+    public void getEmployeeController_ThenAddEmployee() throws Exception {
+    	
+    	
+        MvcResult result = mockMvc.perform(post("/employee") 
+        		.contentType(MediaType.APPLICATION_JSON_VALUE).content(jsonEmp))
+        		.andDo(print())
+        		.andExpect(status().isOk())
+                .andReturn();
+
+		
+		System.out.println(result.getResponse().getStatus());
+		
+		int actual = result.getResponse().getStatus();  
+		
+		int expected = 200;
+        
+		Assert.assertEquals(actual, expected);
+		
+		
+}
     
 //*****************Testing for MenuItemsController********************************
     
@@ -285,6 +312,7 @@ public class Tests {
   public void setupMenuItem() {
       mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
   }
+//*****************Testing for MenuItemsController's getAllMenuItems method********************************    
 
   @Test
   public void getMenuItemsController_ThenReturnMenuItems() throws Exception {
@@ -296,18 +324,19 @@ public class Tests {
       		.andExpect(status().isOk())
               .andReturn();
       
-		System.out.println(result.getResponse().getHeader("Content-Type"));
-		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+      	int actual = result.getResponse().getStatus(); 
 		
-		System.out.println(result.getResponse().getContentAsString());
+		int expected = 200;
       
-		
-		
+		Assert.assertEquals(actual, expected);
+     
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
-      Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+		Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
      
   }
   
+//*****************Testing for MenuItemsController's getMenuItemById method********************************    
+
   @Test
   public void getMenuItemsController_ThenReturnSpecificMenuItems() throws Exception {
       MvcResult result = mockMvc.perform(get("/menuitems/m/1")) // testing is done without the /api context of the DispatcherServlet f
@@ -322,49 +351,70 @@ public class Tests {
 		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
 		System.out.println(result.getResponse().getContentAsString());
 		
-		String x = result.getResponse().getContentAsString();
+		String databaseResponse = result.getResponse().getContentAsString().toString(); 
+		System.out.println("*************************************");
 		
-		String slice = x.substring(1);
+		String json = Json.createObjectBuilder()
+	            .add("menu_id", 1)
+	            .add("itemName", "cheeseburger")
+	            .add("description", "Saucy slice of beef with cheese")
+	            .add("price", 100.0)
+	            .build()
+	            .toString();
+		System.out.println(json);
 		
-		String sliced_again = slice.substring(0, slice.length() - 1);
+		String actual = databaseResponse;
 		
-		String[] split = sliced_again.split(",");
-		
-		System.out.println(slice);
-		System.out.println(sliced_again); 
-		System.out.println(Arrays.toString(split));
-		
-		String testItem = split[1];	 
-		System.out.println(testItem);
-		
-		String[] passwordarray = testItem.split(":");
-		
-		System.out.println(Arrays.toString(passwordarray));
-		System.out.println(passwordarray[1]);
-		
-		String slicedPassword = passwordarray[1].substring(1, passwordarray[1].length() -1);
-		
-		String actual = slicedPassword;	
-		
-		String expected = "cheeseburger";
-      
+		String expected = json;
+        
 		Assert.assertEquals(actual, expected);
-		
+
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
-      Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+		Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
      
   }
   
+  
+//*****************Testing for MenuItemsController's addMenuItem method********************************    
+
+	String jsonMenuItem = Json.createObjectBuilder()
+            .add("itemName", "cheeseburger")
+            .add("description", "Saucy slice of beef with cheese")
+            .add("price", 100.0)
+            .build()
+            .toString();
+	
+	 	@Test 
+	    public void getMenuItemsController_ThenAddMenuItems() throws Exception {
+	    		    	
+	        MvcResult result = mockMvc.perform(post("/customers") 
+	        		.contentType(MediaType.APPLICATION_JSON_VALUE).content(jsonMenuItem))
+	        		.andDo(print())
+	        		.andExpect(status().isOk())
+	                .andReturn();
+
+			
+			System.out.println(result.getResponse().getStatus());
+			
+			int actual = result.getResponse().getStatus(); 
+			
+			int expected = 200;
+	        
+			Assert.assertEquals(actual, expected);
+			
+	
+	}
+	 	
 //*****************Testing for OrdersController********************************
   
   @Autowired
   OrdersController controllerOrder;
 
-
+//*****************Testing for OrdersController's getAllOrders method********************************
 
   @Test
   public void getOrdersController_ThenReturnOrder() throws Exception {
-      MvcResult result = mockMvc.perform(get("/menuitems")) // testing is done without the /api context of the DispatcherServlet f
+      MvcResult result = mockMvc.perform(get("/orders")) // testing is done without the /api context of the DispatcherServlet f
       
 
       		// from web.xml. The tests startup their own context not from the
@@ -372,17 +422,20 @@ public class Tests {
       		.andExpect(status().isOk())
               .andReturn();
       
-		System.out.println(result.getResponse().getHeader("Content-Type"));
-		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+      	int actual = result.getResponse().getStatus(); 
 		
-		System.out.println(result.getResponse().getContentAsString());
+		int expected = 200;
       
-		
-		
+		Assert.assertEquals(actual, expected);
+      
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
-      Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+		Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
      
   }
+  
+  
+//*****************Testing for OrdersController's getOrdersById method********************************
+
   
   @Test
   public void getOrdersController_ThenReturnSpecificOrder() throws Exception {
@@ -398,45 +451,87 @@ public class Tests {
 		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
 		System.out.println(result.getResponse().getContentAsString());
 		
-		String x = result.getResponse().getContentAsString();
+		System.out.println("*************************************");
 		
-		String slice = x.substring(1);
+		int actual = result.getResponse().getStatus(); 
 		
-		String sliced_again = slice.substring(0, slice.length() - 1);
+		int expected = 200;
 		
-		String[] split = sliced_again.split(",");
-		
-		System.out.println(slice);
-		System.out.println(sliced_again); 
-		System.out.println(Arrays.toString(split));
-		
-		String testItem = split[1];	 
-		System.out.println(testItem);
-		
-		String[] passwordarray = testItem.split(":");
-		
-		System.out.println(Arrays.toString(passwordarray));
-		System.out.println(passwordarray[1]);
-		
-		String slicedPassword = passwordarray[1].substring(1, passwordarray[1].length() -1);
-		
-		String actual = slicedPassword;	
-	
-		String expected = "DELIVERY";
-    
-      Assert.assertEquals(actual, expected);
+		Assert.assertEquals(actual, expected);
 		
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
-      Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
-     
+	    Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+	     	
+//	    String databaseResponse = result.getResponse().getContentAsString().toString(); 
+	    
+//		JsonObjectBuilder jsonOrder = Json.createObjectBuilder();
+//        jsonOrder.add("order_id", 1);
+//        jsonOrder.add("orderType", "DELIVERY");
+//        jsonOrder.add("status", "PENDING");
+//        jsonOrder.add("customer_id", 1);
+//        jsonOrder.add("deliveryAddress", "11 Delivery Lane");  
+//        jsonOrder.add("billingAddress", "11 Billing lane");
+//	
+//		JsonArray itemsOrdered = Json.createArrayBuilder()
+//		.add(Json.createObjectBuilder()
+//		.add("menu_id", 2).add("itemName","burger").add("description","Saucy slice of beef with onions").add("price",100.0))
+//		.add(Json.createObjectBuilder()
+//		.add("menu_id", 3).add("itemName","hamburger").add("description","Saucy slice of beef with no cheese").add("price",100.0))
+//		.add(Json.createObjectBuilder()
+//		.add("menu_id", 1).add("itemName","cheeseburger").add("description","Saucy slice of beef with cheese").add("price",100.0))
+//		.build();
+//		jsonOrder.add("itemsOrdered", itemsOrdered);
+//		JsonObject data = jsonOrder.build();
+//		StringWriter sw = new StringWriter();
+//		JsonWriter jw = Json.createWriter(sw);
+//		jw.writeObject(data);
+//		jw.close();
+//		
+//		System.out.println(sw.toString());
+//		
+//		
+//		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&THIS IS EXPECTED VALUE &&&&&&&&&&&&&&&&&&&&");
+//		String json = sw.toString();
+//		
+//		String actual = databaseResponse;
+//		
+//		String expected = json;
+        	
   }
+  
+//*****************Testing for OrdersController's addOrders method********************************
+  
+  @Test
+  public void getOrdersController_ThenAddOrder() throws Exception {
+	  MvcResult result = mockMvc.perform(post("/orders") 
+      		.contentType(MediaType.APPLICATION_JSON_VALUE).content(""))
+      		.andDo(print())
+      		//.andExpect(status().isOk())
+              .andReturn();
+
+	  	System.out.println("******************THE STATUS*****************************");
+		System.out.println(result.getResponse().getStatus()); 
+		
+	
+		int actual = result.getResponse().getStatus();   
+		
+		int expected = 400;
+        
+		Assert.assertEquals(actual, expected);
+		
+	
+      
+}
+ 	
+
+  
   
 //*****************Testing for ReservationsController********************************
   
   @Autowired
   ReservationsController controllerReservation;
 
-
+//*****************Testing for ReservationsController's getAllReservations method********************************
   @Test
   public void getReservationsController_ThenReturnReservation() throws Exception {
       MvcResult result = mockMvc.perform(get("/reservations")) // testing is done without the /api context of the DispatcherServlet f
@@ -447,17 +542,18 @@ public class Tests {
       		.andExpect(status().isOk())
               .andReturn();
       
-		System.out.println(result.getResponse().getHeader("Content-Type"));
-		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+      	int actual = result.getResponse().getStatus(); 
 		
-		System.out.println(result.getResponse().getContentAsString());
+		int expected = 200;
       
-		
+		Assert.assertEquals(actual, expected);
 		
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
-      Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+		Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
      
   }
+  
+//*****************Testing for ReservationsController's getCustomerById method ********************************
   
   @Test
   public void getReservationsController_ThenReturnSpecificReservation() throws Exception {
@@ -473,36 +569,59 @@ public class Tests {
 		System.out.println(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
 		System.out.println(result.getResponse().getContentAsString());
 		
-		String x = result.getResponse().getContentAsString();
+		String databaseResponse = result.getResponse().getContentAsString().toString(); 
+		System.out.println("*************************************");
 		
-		String slice = x.substring(1);
+		String json = Json.createObjectBuilder()
+	            .add("reservation_id", 1)
+	            .add("customer_id", 1)
+	            .add("date", "10-10-2020")
+	            .add("time", 12)
+	            .add("status", "Cancelled")
+	            .build()
+	            .toString();
+		System.out.println(json);
 		
-		String sliced_again = slice.substring(0, slice.length() - 1);
+		String actual = databaseResponse;
 		
-		String[] split = sliced_again.split(",");
-		
-		System.out.println(slice);
-		System.out.println(sliced_again); 
-		System.out.println(Arrays.toString(split));
-		
-		String testItem = split[1];	 
-		System.out.println(testItem);
-		
-		String[] passwordarray = testItem.split(":");
-		
-		System.out.println(Arrays.toString(passwordarray));
-		System.out.println(passwordarray[1]);
-				
-		int password = Integer.parseInt(passwordarray[1]);
-		int actual = password; 
-		
-		int expected = 1; 
-		
-	
-      Assert.assertEquals(actual, expected);
+		String expected = json;
+        
+		Assert.assertEquals(actual, expected);
 		
 		Assert.assertTrue("Empty content", result.getResponse().getContentAsString().length() > 0);
-      Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
+		Assert.assertNotNull(result.getResponse().getHeader("Content-Type").equals("application/json;charset=UTF-8"));
      
   }
+  
+//*****************Testing for ReservationsController's addCustomer method ********************************
+  
+  String jsonReser = Json.createObjectBuilder()
+          .add("customer_id", 1)
+          .add("date", "10-10-2020")
+          .add("time", 12)
+          .add("status", "Cancelled")
+          .build()
+          .toString();
+  
+  @Test 
+  public void getReservationsController_ThenAddReservations() throws Exception {
+  	 	
+      MvcResult result = mockMvc.perform(post("/customers") 
+      		.contentType(MediaType.APPLICATION_JSON_VALUE).content(jsonReser))
+      		.andDo(print())
+      		.andExpect(status().isOk())
+            .andReturn();
+
+		
+		System.out.println(result.getResponse().getStatus()); 
+		
+		int actual = result.getResponse().getStatus(); 
+		
+		int expected = 200;
+      
+		Assert.assertEquals(actual, expected);
+		
+
+  }
+  
 }

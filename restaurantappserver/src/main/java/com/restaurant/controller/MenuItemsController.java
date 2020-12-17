@@ -42,6 +42,7 @@ public class MenuItemsController {
      * */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MenuItems> getAllMenuItems() {
+    	System.out.println("Det all menu items");
         return menuItemsDAO.getAll();
     }
     
@@ -57,7 +58,8 @@ public class MenuItemsController {
     @GetMapping(path="m/{menuId}", produces = MediaType.APPLICATION_JSON_VALUE) // /api/greetings/x
     // where x is some int
 	public MenuItems getMenuItemById(@PathVariable(name="menuId", required = true) Integer id) {
-
+    	
+    	System.out.println(id);
 		return menuItemsDAO.getById(id);
 	}
     
@@ -71,7 +73,8 @@ public class MenuItemsController {
 	 * */
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public void addMenuItem(@RequestBody MenuItems m) throws URISyntaxException {
-    
+    	
+    	System.out.println(m);
     	menuItemsDAO.save(m);
     }
 
@@ -86,10 +89,12 @@ public class MenuItemsController {
     @DeleteMapping(path="r/{menu_id}")
     @ResponseBody
     public ResponseEntity<String> deleteFromMenu(@PathVariable(name="menu_id", required = true) Integer id) throws URISyntaxException{
+    	System.out.println("Create httpHeaders");
         HttpHeaders httpHeaders = new HttpHeaders();
         System.out.println("Reaching the controller");
         System.out.println(id);
         menuItemsDAO.remove(id);
+        System.out.println("Return ResponseEntity");
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
     }
     

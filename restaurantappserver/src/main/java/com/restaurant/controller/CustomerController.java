@@ -68,6 +68,7 @@ public class CustomerController {
 	 * */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Customer> getAllCustomers() {
+    	System.out.println("Get all customers");
         return customerDAO.getAll();
     }
     
@@ -85,7 +86,8 @@ public class CustomerController {
     @GetMapping(path="c/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE) // /api/greetings/x
     // where x is some int
 	public Customer getCustomerById(@PathVariable(name="customerId", required = true) Integer id) {
-
+    	
+    	System.out.println(id);
 		return customerDAO.getById(id);
 	}
     
@@ -103,10 +105,11 @@ public class CustomerController {
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public Customer addCustomer(@RequestBody Customer c) throws URISyntaxException {
     
-    
+    	System.out.println(c);
     	return customerDAO.save(c);
     }
     
+
     /*
     @DeleteMapping(path="d/{customerId}")
     public void removeCustomer(@PathVariable(name="customerId", required = true) Integer id) {
@@ -128,8 +131,9 @@ public class CustomerController {
     	
     	customerDAO.deleteById(userId);
     	
-    	System.out.println();
     	
+    	System.out.println("Return ResponseEntity");
+    	System.out.println();
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
 
     }
@@ -151,7 +155,8 @@ public class CustomerController {
     	System.out.println(id);
     	
     	customerDAO.deleteById(id);
-
+    	
+    	System.out.println("Return ResponseEntity");
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
 
     }

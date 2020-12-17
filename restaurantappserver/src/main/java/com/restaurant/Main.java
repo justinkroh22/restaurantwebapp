@@ -27,21 +27,11 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		
-		//Main main = new Main();
-		
-		
-		//main.testConnection();
-		
-		
         ApplicationContext ac = new ClassPathXmlApplicationContext("WEB-INF/application-context.xml");
         Main main = ac.getBean(Main.class);
 
+
         ((AbstractApplicationContext)ac).close();
-
-
 	}
-
-
 	
-
 }
