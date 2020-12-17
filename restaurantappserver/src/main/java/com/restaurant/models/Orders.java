@@ -2,6 +2,7 @@ package com.restaurant.models;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -52,7 +53,7 @@ public class Orders {
         joinColumns=@JoinColumn(name="order_id", referencedColumnName="order_id"),
         inverseJoinColumns = @JoinColumn(name="menu_id", referencedColumnName="menu_id")
     )
-    private Set<MenuItems> itemsOrdered;
+    private List<MenuItems> itemsOrdered;
 	
 	
 	
@@ -137,13 +138,13 @@ public class Orders {
 
 
 
-	public Set<MenuItems> getItemsOrdered() {
+	public List<MenuItems> getItemsOrdered() {
 		return itemsOrdered;
 	}
 
 
 
-	public void setItemsOrdered(Set<MenuItems> itemsOrdered) {
+	public void setItemsOrdered(List<MenuItems> itemsOrdered) {
 		this.itemsOrdered = itemsOrdered;
 	}
 

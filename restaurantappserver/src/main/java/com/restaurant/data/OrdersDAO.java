@@ -22,6 +22,11 @@ import com.restaurant.models.Orders;
 import com.restaurant.models.MenuItems;
 
 
+/**
+ * The OrdersDAO manages all employee interactions with the Database utilizing hibernate
+ *
+ * @author Justin Kroh
+ * */
 @Repository
 @Transactional
 public class OrdersDAO {
@@ -114,6 +119,12 @@ public class OrdersDAO {
 
 	*/
 
+    
+    /**
+     * Constructor Dependency Injection gets session factory from Spring IOC Container
+     *
+     * @author Justin Kroh
+     * */
     @Autowired
     public OrdersDAO(SessionFactory sessionFactory, MenuItemsDAO menuItemsDAO) {
         System.out.println("Creating Orders DAO");
@@ -121,24 +132,70 @@ public class OrdersDAO {
         this.menuItemsDAO = menuItemsDAO;
     }
 
+    
+	/**
+	 * Adds a Order in the Database
+	 * @param Orders see model
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return Orders Object, see Model
+	 * */
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
     public void save(Orders o) {
         Session session = sessionFactory.getCurrentSession();
         session.save(o);
     }
 
+    
+	/**
+	 * Gets an order by Id
+	 * @param ID of order to get
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return Orders Object, see Model
+	 * */
     @Transactional(readOnly = true)
     public Orders getById(int id) {
         Session session = sessionFactory.getCurrentSession();
         return (Orders) session.get(Orders.class, id);
     }
 
+    
+	/**
+	 * Gets a list of Orders
+	 * @param ID of order to get
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return List of Orders Object, see Model
+	 * */
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public List<Orders> getAll() {
         Session s = sessionFactory.getCurrentSession();
         Query hql = s.createQuery("From Orders");
         return hql.list();
+    }
+    
+    
+	/**
+	 * Updates the status field of an Order, CANCELED, PENDING, DELIVERED
+	 * @param ID of order to get
+	 * @status the status to change to, CANCELED, PENDING, DELIVERED
+	 * 
+	 * @author Ronald Martz, Justin Kroh
+	 * 
+	 * */
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
+    public void updateOrderStatus(Integer id, String status){
+        Session s = sessionFactory.getCurrentSession();
+        Query hql = s.createQuery("Update Orders set status = :status where order_id = :id");
+        hql.setString("status",status);
+        hql.setInteger("id",id);
+        hql.executeUpdate();
+        
     }
 	
 	

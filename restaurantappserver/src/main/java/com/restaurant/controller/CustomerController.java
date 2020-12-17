@@ -26,6 +26,20 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 
+
+
+
+
+
+
+
+
+/**
+ * The Customer Contoller "Handles" All incoming API requests. The handlers call the DAO which interacts with the database.
+ *
+ * @author Justin Kroh
+
+ * */
 @CrossOrigin
 @RestController
 @RequestMapping("/customers")
@@ -45,7 +59,13 @@ public class CustomerController {
     }
     */
     
-    
+	/**
+	 * Retrieves a list of all customers in the database
+
+	 * @author Justin Kroh
+	 * 
+	 * @return JSON list of all customers
+	 * */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Customer> getAllCustomers() {
     	System.out.println("Get all customers");
@@ -53,6 +73,16 @@ public class CustomerController {
     }
     
     
+    
+    
+    
+	/**
+	 *	Gets an individual customer from the database by their ID
+	 * @param customerId
+	 * @author Justin Kroh
+	 * 
+	 * @return Json representation of an individual customer
+	 * */
     @GetMapping(path="c/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE) // /api/greetings/x
     // where x is some int
 	public Customer getCustomerById(@PathVariable(name="customerId", required = true) Integer id) {
@@ -63,6 +93,15 @@ public class CustomerController {
     
     
     
+    
+    
+	/**
+	 * Adds a customer to the database
+	 * @param Customer Object, see model
+	 * @author Justin Kroh
+	 * 
+	 * @return Returns the ID of the customer that was added  to the db
+	 * */
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public Customer addCustomer(@RequestBody Customer c) throws URISyntaxException {
     
@@ -70,7 +109,19 @@ public class CustomerController {
     	return customerDAO.save(c);
     }
     
- 
+
+    /*
+    @DeleteMapping(path="d/{customerId}")
+    public void removeCustomer(@PathVariable(name="customerId", required = true) Integer id) {
+        
+    	System.out.println(id);
+    	
+    	 customerDAO.deleteById(id);
+    }
+    */
+    
+    /*
+    @Deprecated
     @DeleteMapping(path="delete")
     @ResponseBody
     public ResponseEntity<String> deleteCustomer(@RequestParam int userId) throws URISyntaxException {
@@ -82,10 +133,20 @@ public class CustomerController {
     	
     	
     	System.out.println("Return ResponseEntity");
+    	System.out.println();
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
 
     }
     
+    */
+    
+	/**
+	 *	Deletes a customer in the database by thier customerId
+	 * @param customerId
+	 * @author Justin Kroh
+	 * 
+	 * @return Returns status OK
+	 * */
     @DeleteMapping(path="d/{customerId}")
     @ResponseBody
     public ResponseEntity<String> deleteCustomer(@PathVariable(name="customerId", required = true) Integer id) throws URISyntaxException {

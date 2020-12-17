@@ -18,6 +18,8 @@ import { MenuItemsComponent } from './Components/menuitems/menuitems.component';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { CreateOrderComponent } from './Components/create-order/create-order.component';
 import { LoginComponent } from './Components/login/login.component';
+import { HomepageComponent } from './Components/homepage/homepage.component';
+import { FooterComponent } from './Components/footer/footer.component';
 
 
 
@@ -33,7 +35,9 @@ import { LoginComponent } from './Components/login/login.component';
     MenuItemsComponent,
     OrdersComponent,
     CreateOrderComponent,
-    LoginComponent
+    LoginComponent,
+    HomepageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
