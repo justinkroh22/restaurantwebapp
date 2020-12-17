@@ -16,6 +16,12 @@ import com.restaurant.models.Customer;
 import java.sql.SQLException;
 import java.util.List;
 
+
+/**
+ * The CustomerDAO manages all customer interactions with the Database utilizing hibernate
+ *
+ * @author Justin Kroh
+ * */
 @Repository
 @Transactional
 public class CustomerDAO {
@@ -31,12 +37,26 @@ public class CustomerDAO {
     
     */
 
+    
+    /**
+     * Constructor Dependency Injection gets session factory from Spring IOC Container
+     *
+     * @author Justin Kroh
+     * */
     @Autowired
     public CustomerDAO(SessionFactory sessionFactory) {
         System.out.println("Creating Customer DAO");
         this.sessionFactory = sessionFactory;
     }
 
+	/**
+	 * Adds a customer in the Database
+	 * @param Customer Object see model
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return Customer Object, see Model
+	 * */
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
     public Customer save(Customer c) {
         Session session = sessionFactory.getCurrentSession();
@@ -44,13 +64,28 @@ public class CustomerDAO {
         return c;
     }
     
+	/**
+	 * Deletes a customer in the Database
+	 * @param Customer Object see model
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * 
+	 * */
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
     public void delete(Customer c) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(c);
     }
     
-    
+	/**
+	 * Deletes a customer in the Database byID
+	 * @param id Id of Customer
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * 
+	 * */
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
     public void deleteById(int id) {
         Session session = sessionFactory.getCurrentSession();
@@ -61,12 +96,29 @@ public class CustomerDAO {
     }
     
 
+	/**
+	 * Returns a customer in the Database by ID
+	 * @param id of customer
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return Customer Object, see Model
+	 * */
     @Transactional(readOnly = true)
     public Customer getById(int id) {
         Session session = sessionFactory.getCurrentSession();
         return (Customer) session.get(Customer.class, id);
     }
 
+    
+	/**
+	 * Returns all Customers in the Database
+	 *
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return List of Customer Objects, see Model
+	 * */
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public List<Customer> getAll() {

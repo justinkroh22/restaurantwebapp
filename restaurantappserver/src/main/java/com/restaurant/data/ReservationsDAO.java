@@ -17,6 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * The ReservationsDAO manages all employee interactions with the Database utilizing hibernate
+ *
+ * @author Justin Kroh
+ * */
 @Repository
 @Transactional
 public class ReservationsDAO {
@@ -40,6 +45,12 @@ public class ReservationsDAO {
     
     */
 
+    
+    /**
+     * Constructor Dependency Injection gets session factory from Spring IOC Container
+     *
+     * @author Justin Kroh
+     * */
     @Autowired
     public ReservationsDAO(SessionFactory sessionFactory) {
         System.out.println("Creating Reservation DAO");
@@ -47,12 +58,29 @@ public class ReservationsDAO {
     }
 
     
+	/**
+	 * Adds a Reservation in the Database
+	 * @param Reservations Object see model
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return Reservations Object, see Model
+	 * */
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
     public void save(Reservations r) {
         Session session = sessionFactory.getCurrentSession();
         session.save(r);
     }
 
+    
+	/**
+	 * Gets a Reservations Object by ID in the Database
+	 * @param Orders see model
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return Reservations Object, see Model
+	 * */
     @Transactional(readOnly = true)
     public Reservations getById(int id) {
         Session session = sessionFactory.getCurrentSession();
@@ -60,6 +88,14 @@ public class ReservationsDAO {
     }
     
     
+	/**
+	 * Returns a list of reservations objects in the database
+	 * @param Orders see model
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return List of Reservations Object, see Model
+	 * */
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public List<Reservations> getAll() {
@@ -68,6 +104,15 @@ public class ReservationsDAO {
         return hql.list();
     }
 
+    
+    /**
+	 * Updates the status field of an Reservations, CANCELED, BOOKED
+	 * @param ID of order to get
+	 * @status the status to change to
+	 * 
+	 * @author Ronald Martz
+	 * 
+	 * */
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
     public void changeReservation(Integer id, String status){
         Session s = sessionFactory.getCurrentSession();

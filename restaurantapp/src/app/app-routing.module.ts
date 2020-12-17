@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/auth/auth.guard';
 
 
 import {CustomersComponent} from './Components/customers/customers.component';
@@ -14,12 +15,12 @@ import {HomepageComponent} from './Components/homepage/homepage.component';
 
 const routes: Routes = [
   { path: 'Customers', component: CustomersComponent },
-  { path: 'Employee', component: EmployeeComponent },
+  { path: 'Employee',  canActivate: [AuthGuard], component: EmployeeComponent },
   { path: 'Reservation', component: ReservationsComponent },
 
   { path: 'Menu', component: MenuComponent},
   { path: 'Menu/newItem', component: MenuItemsComponent },
-  { path: 'Orders/ManageOrders', component: OrdersComponent },
+  { path: 'Orders/ManageOrders', canActivate: [AuthGuard], component: OrdersComponent },
   { path: 'Orders/CreateNewOrder', component: CreateOrderComponent },
   { path: 'Login', component: LoginComponent},
   { path: '', component: HomepageComponent}

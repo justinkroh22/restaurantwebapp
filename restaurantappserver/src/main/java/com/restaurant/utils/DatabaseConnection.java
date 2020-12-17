@@ -8,6 +8,8 @@ import org.hibernate.cfg.Configuration;
 
 public class DatabaseConnection {
 	
+	
+	
 	/**
 	 * Creates a session factory object based on settings in hibernate.cfg.xml
 	 * The Session factory creates sessions that interact with the database
@@ -15,6 +17,8 @@ public class DatabaseConnection {
 	 * @author Justin Kroh
 	 * 
 	 * */
+	
+	/*
 	private SessionFactory factory;
 	
 
@@ -48,5 +52,5 @@ public class DatabaseConnection {
 
 	
 	
-	
+	*/
 }

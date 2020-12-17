@@ -15,7 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.restaurant.models.Employee;
 
-
+/**
+ * The EmployeeDAO manages all employee interactions with the Database utilizing hibernate
+ *
+ * @author Justin Kroh
+ * */
 @Repository
 @Transactional
 public class EmployeeDAO {
@@ -40,13 +44,26 @@ public class EmployeeDAO {
     }
 
 */
-
+    /**
+     * Constructor Dependency Injection gets session factory from Spring IOC Container
+     *
+     * @author Justin Kroh
+     * */
     @Autowired
     public EmployeeDAO(SessionFactory sessionFactory) {
         System.out.println("Creating Employee DAO");
         this.sessionFactory = sessionFactory;
     }
 
+    
+	/**
+	 * Adds a employee in the Database
+	 * @param Employee Object see model
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return Employee Object, see Model
+	 * */
     @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
     public Employee save(Employee e) {
         Session session = sessionFactory.getCurrentSession();
@@ -54,6 +71,15 @@ public class EmployeeDAO {
         return e;
     }
 
+    
+	/**
+	 * Returns a employee object in the Database by ID
+	 * @param id of Employee
+	 * 
+	 * @author Justin Kroh
+	 * 
+	 * @return Customer Object, see Model
+	 * */
     @Transactional(readOnly = true)
     public Employee getById(int id) {
         Session session = sessionFactory.getCurrentSession();
@@ -62,6 +88,15 @@ public class EmployeeDAO {
     
     
 
+    
+	/**
+	 * Returns all Employees in the Database
+	 *
+
+	 * @author Justin Kroh
+	 * 
+	 * @return List of Employee Objects, see Model
+	 * */
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public List<Employee> getAll() {
@@ -71,6 +106,14 @@ public class EmployeeDAO {
     }
     
     
+	/**
+	 * Returns an Employee object after checking the credentials of employee from filling out a login form
+	 * 
+	 *
+	 * @author Justin Kroh
+	 * 
+	 * @return an Employee if credentials exist and are accurate
+	 * */
     public Employee checkCredentials(String email, String password) {
     	
     	boolean correctCredentials = false;

@@ -13,6 +13,11 @@ import com.restaurant.data.CustomerDAO;
 import com.restaurant.models.Customer;
 import com.restaurant.utils.DatabaseConnection;
 
+
+/**
+ * This class locates the application context
+ * 
+ * */
 @Component
 @EnableWebMvc
 public class Main {
@@ -31,13 +36,8 @@ public class Main {
         ApplicationContext ac = new ClassPathXmlApplicationContext("WEB-INF/application-context.xml");
         Main main = ac.getBean(Main.class);
 
-
-
         ((AbstractApplicationContext)ac).close();
-		
-		
-		
-		
+
 
 	}
 

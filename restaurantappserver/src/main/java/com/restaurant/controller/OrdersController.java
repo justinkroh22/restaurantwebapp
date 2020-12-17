@@ -30,6 +30,13 @@ import java.util.List;
 import java.util.Set;
 
 
+
+/**
+ * The Orders Contoller "Handles" All incoming API requests. The handlers call the DAO which interacts with the database.
+ *
+ * @author Justin Kroh
+
+ * */
 @CrossOrigin
 @RestController
 @RequestMapping("/orders")
@@ -41,41 +48,32 @@ public class OrdersController {
     @Autowired
     private MenuItemsDAO menuItemsDAO;
 
+    
+    /**
+     * Returns a list of all orders
+     *
+     * @author Justin Kroh
+     * 
+     * @return List of orders in JSON format
+
+     * */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Orders> getAllOrders() {
-    	
-    	/*
-    	
-        Orders o2 = new Orders();
-
-
-
-        Set<MenuItems> itemsOrdered2 = new HashSet<>();
-
-        itemsOrdered2.add(menuItemsDAO.getById(1));
-        itemsOrdered2.add(menuItemsDAO.getById(2));
-        itemsOrdered2.add(menuItemsDAO.getById(3));
-
-        System.out.println(itemsOrdered2);
-
-        o2.setOrderType("DELIVERY");
-        o2.setStatus("PENDING");
-        o2.setDeliveryAddress("11 LALA LANE");
-        o2.setBillingAddress("11 LALA LANE");
-        o2.setCustomer_id(2);
-        o2.setItemsOrdered(itemsOrdered2);
-        
-        ordersDAO.save(o2);
 
     	
-    	*/
         return ordersDAO.getAll();
         
         
     }
     
     
-    
+	/**
+	 * Gets an individual order from the database by their ID
+	 * @param orderId
+	 * @author Justin Kroh
+	 * 
+	 * @return Json representation of an individual order
+	 * */
     @GetMapping(path="o/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE) // /api/greetings/x
     // where x is some int
 	public Orders getOrdersById(@PathVariable(name="orderId", required = true) Integer id) {
@@ -83,6 +81,14 @@ public class OrdersController {
 		return ordersDAO.getById(id);
 	}
     
+    
+    /**
+	 * Adds a Order to the database
+	 * @param Order Object, see model
+	 * @author Justin Kroh
+	 * 
+	 * 
+	 * */
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public void addOrders(@RequestBody Orders o) throws URISyntaxException {
     
@@ -114,7 +120,12 @@ public class OrdersController {
     	ordersDAO.save(o);
     }
     
-    
+    /**
+	 * Deletes a Order from the database, uses query params ID and Status
+	 * @author Justin Kroh
+	 * 
+	 * 
+	 * */
     @RequestMapping(method=RequestMethod.PUT,path="/u/")
     @ResponseBody
     public void updateOrderStatus(@RequestParam(name="id") Integer id, @RequestParam(name="status") String status){
