@@ -85,7 +85,20 @@ public class EmployeeDAO {
         Session session = sessionFactory.getCurrentSession();
         return (Employee) session.get(Employee.class, id);
     }
-    
+
+	/**
+	 * Removes a EmployeeItem in the Database
+	 * @param EmployeeItem m see model
+	 *
+	 * @author Ronald Martz
+	 * */
+	@Transactional
+	public void remove(Integer m){
+		Session session = sessionFactory.getCurrentSession();
+		Query hql = session.createQuery("delete from Employee where employee_id=:id");
+		hql.setInteger("id",m);
+		hql.executeUpdate();
+	}
     
 
     
