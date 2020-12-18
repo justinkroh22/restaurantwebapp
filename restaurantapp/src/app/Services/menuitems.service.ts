@@ -52,6 +52,18 @@ export class MenuItemsService {
     return this.http.delete<any>(this.menuItemsUrl + '/r/' + id);
   }
 
+  updateMenuItemForm(any: any): Observable<any> {
+    console.log(any)
+    let id:number = any.menu_id;
+    let itemName: string = any.itemName;
+    let description: string = any.description;
+    let price: number = any.price;
+
+    let params:string = `?id=${id}&name=${itemName}&desc=${description}&price=${price}`;
+    console.log(params);
+    return this.http.put<any>(this.menuItemsUrl + '/u/' + params, this.httpOptions);
+  }
+
   // sortList(menuItemsUnsorted:Observable<Menu[]>) : Observable<Menu[]>{
   //   let menuItemsSorted = menuItemsUnsorted;
   //   menuItemsUnsorted.forEach(item => { item.sort();

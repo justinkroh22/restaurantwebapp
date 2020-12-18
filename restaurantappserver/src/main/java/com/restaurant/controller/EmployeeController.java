@@ -1,14 +1,11 @@
 package com.restaurant.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.restaurant.data.CustomerDAO;
 import com.restaurant.data.EmployeeDAO;
@@ -105,6 +102,25 @@ public class EmployeeController {
     	
     	return employeeDAO.checkCredentials(login.getEmail(), login.getPassword());
     }
+
+	/**
+	 * Deletes an Employee from the database
+	 * @param Employee_Id path
+	 * @author Ronald Martz
+	 *
+	 * @return Returns Http Status Okay
+	 * */
+	@DeleteMapping(path="r/{employee_id}")
+	@ResponseBody
+	public ResponseEntity<String> deleteFromEmployees(@PathVariable(name="employee_id", required = true) Integer id) throws URISyntaxException{
+		System.out.println("Create httpHeaders");
+		HttpHeaders httpHeaders = new HttpHeaders();
+		System.out.println("Reaching the controller");
+		System.out.println(id);
+		employeeDAO.remove(id);
+		System.out.println("Return ResponseEntity");
+		return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
+	}
     
 
 }

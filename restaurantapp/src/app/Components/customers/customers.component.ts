@@ -16,7 +16,7 @@ export class CustomersComponent implements OnInit {
   title = 'Customer List';
 
   customer: Customer = {
-    id: 5,
+    customer_id: 5,
     password: 'blah',
     firstName: 'Justin',
     lastName: 'Kroh',
@@ -79,16 +79,16 @@ export class CustomersComponent implements OnInit {
 
   }
 
-  removeCustomer(id: number): void {
-
-      this.customersService.removeCustomer(id)
+  removeCustomer(id:any): void {
+      let custID: number = parseInt(id);
+      this.customersService.removeCustomer(custID)
       .subscribe(resp => console.log(resp));
 
+      window.location.reload();
   }
 
   ngOnInit(): void {
     this.getCustomers();
-    //this.saveCustomer(this.customer);
   }
 
 }
