@@ -1,5 +1,6 @@
 package com.restaurant.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -44,10 +45,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
+	
     @Autowired
     private CustomerDAO customerDAO;
-
     
+/**
+ * Added Logger to check CustomerController' info
+ */
+
+    private static final Logger logger = Logger.getLogger(CustomerController.class);
+//    public void  CustomerLogger() {
+//    	logger.info("This is info message");
+//    }
 
     /*
     @RequestMapping(value = "d/{customerId}",  produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
