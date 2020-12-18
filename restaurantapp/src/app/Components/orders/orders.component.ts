@@ -6,12 +6,24 @@ import { OrdersService } from '../../Services/orders.service';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MenuItemClass } from 'src/app/Models/menuitemclass';
 import { AuthService } from 'src/app/Services/auth.service';
+import { CustomersService} from 'src/app/Services/customers.service';
+import { CustomerClass } from 'src/app/customerclass';
+
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
+
+
+
+
+/**
+ * The Orders Component deals with viewing and managing the status of orders
+ * 
+ * @author Justin Kroh
+ * */
 export class OrdersComponent implements OnInit {
 
   title ='Orders Page';
@@ -22,10 +34,12 @@ export class OrdersComponent implements OnInit {
 
   message: string = 'Click the buttons to update the corresponding order';
 
+  customer?: CustomerClass;
+
 
   orderList?: OrderClass [];
 
-  constructor(private formBuilder: FormBuilder, private ordersService: OrdersService, public authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private ordersService: OrdersService, private customersService: CustomersService, public authService: AuthService) {
     this.form = this.formBuilder.group({
       orderType: '',
       billingAddress: '',
@@ -58,7 +72,7 @@ export class OrdersComponent implements OnInit {
 
     this.getMenuItems();
 
-    window.location.reload();
+
   }
 
   updateStatusDELIVERED(order_id: any){
@@ -70,7 +84,6 @@ export class OrdersComponent implements OnInit {
 
     this.getMenuItems();
 
-    window.location.reload();
   }
 
   updateStatusCANCELED(order_id: any){
@@ -82,11 +95,20 @@ export class OrdersComponent implements OnInit {
 
     this.getMenuItems();
 
-    window.location.reload();
   }
 
+  getCustomer(id: any){
+    console.log(id.innerHTML);
+    this.customersService.getCustomer(id.innerHTML)
+    
+    .subscribe(customer => this.customer = customer,  error => {console.log(error)}, () => console.log(this.customer));
+
+  }
+
+  
 
 
+  /*
   submitForm() {
 
     console.log(this.form.value);
@@ -115,7 +137,7 @@ export class OrdersComponent implements OnInit {
     this.ordersService.saveOrderForm(orderObject)
     .subscribe((data => {console.log(data.body)}));
   }
-
+*/
 
 
   ngOnInit(): void {

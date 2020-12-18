@@ -48,9 +48,9 @@ public class MenuItems {
 	*/
 	
 
-	@ManyToMany(mappedBy = "itemsOrdered")
-	private Set<Orders> orders = new HashSet<>();
-	
+//	@ManyToMany(mappedBy = "itemsOrdered")
+//	private Set<Orders> orders = new HashSet<>();
+//	
 
 	
 	public MenuItems() {

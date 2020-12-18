@@ -9,6 +9,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Employee endpoint access
+ * 
+ * @author Justin Kroh
+ * */
 export class EmployeeService {
 
   private employeesUrl = 'http://localhost:8081/restaurantappserver/api/employee';

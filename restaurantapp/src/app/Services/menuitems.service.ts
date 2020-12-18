@@ -7,6 +7,13 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
+
+/**
+ * MenuItems Endpoint Access
+ * 
+ * @author Justin Kroh
+ * */
 export class MenuItemsService {
 
 

@@ -272,6 +272,7 @@ public class Tests {
 //*****************Testing for EmployeeController's addEmployee method********************************   
     
 	String jsonEmp = Json.createObjectBuilder()
+			.add("employee_id", 1000)
             .add("password", "12345")
             .add("email", "test12345")
             .add("firstName", "test")
@@ -302,6 +303,67 @@ public class Tests {
 		
 		
 }
+	
+
+	
+	//*****************Testing for EmployeeController's addEmployee method********************************   
+    
+	
+	@Test 
+    public void deleteEmployeeById() throws Exception {
+    	
+    	
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.delete("/employee/r/1000") 
+        		.contentType(MediaType.APPLICATION_JSON_VALUE))
+        		.andDo(print())
+        		.andExpect(status().isOk())
+                .andReturn();
+
+		
+		System.out.println(result.getResponse().getStatus());
+		
+		int actual = result.getResponse().getStatus();  
+		
+		int expected = 200;
+        
+		Assert.assertEquals(actual, expected);
+		
+		
+}
+	//*****************Testing for EmployeeController's addEmployee method********************************   
+    
+	String login = Json.createObjectBuilder()
+            .add("password", "12345")
+            .add("email", "test12345")
+            .build()
+            .toString();
+		
+		@Test 
+	    public void getEmployee2Controller_ThenAddEmployee() throws Exception {
+	    	
+	    	
+	        MvcResult result = mockMvc.perform(post("/employee/login") 
+	        		.contentType(MediaType.APPLICATION_JSON_VALUE).content(login))
+	        		.andDo(print())
+	        		.andExpect(status().isOk())
+	                .andReturn();
+
+			
+			System.out.println(result.getResponse().getStatus());
+			
+			int actual = result.getResponse().getStatus();  
+			
+			int expected = 200;
+	        
+			Assert.assertEquals(actual, expected);
+			
+			
+	}
+	
+	
+	
+	
+	
     
 //*****************Testing for MenuItemsController********************************
     
@@ -378,6 +440,7 @@ public class Tests {
 //*****************Testing for MenuItemsController's addMenuItem method********************************    
 
 	String jsonMenuItem = Json.createObjectBuilder()
+			.add("menu_id", 1000)
             .add("itemName", "cheeseburger")
             .add("description", "Saucy slice of beef with cheese")
             .add("price", 100.0)
@@ -385,9 +448,9 @@ public class Tests {
             .toString();
 	
 	 	@Test 
-	    public void getMenuItemsController_ThenAddMenuItems() throws Exception {
+	    public void AddMenuItem() throws Exception {
 	    		    	
-	        MvcResult result = mockMvc.perform(post("/customers") 
+	        MvcResult result = mockMvc.perform(post("/menuitems") 
 	        		.contentType(MediaType.APPLICATION_JSON_VALUE).content(jsonMenuItem))
 	        		.andDo(print())
 	        		.andExpect(status().isOk())
@@ -405,6 +468,34 @@ public class Tests {
 	
 	}
 	 	
+	 	
+	 	
+	 	
+	 	//*****************Testing for MenuItemsController's addMenuItem method********************************    
+
+
+		
+		 	@Test 
+		    public void DeleteMenuItemsById() throws Exception {
+		    		    	
+		        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.delete("/menuitems/r/1000") 
+		        		.contentType(MediaType.APPLICATION_JSON_VALUE))
+		        		.andDo(print())
+		        		.andExpect(status().isOk())
+		                .andReturn();
+
+				
+				System.out.println(result.getResponse().getStatus());
+				
+				int actual = result.getResponse().getStatus(); 
+				
+				int expected = 200;
+		        
+				Assert.assertEquals(actual, expected);
+				
+		
+		}
+		 	
 //*****************Testing for OrdersController********************************
   
   @Autowired

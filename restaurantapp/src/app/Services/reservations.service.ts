@@ -6,6 +6,13 @@ import { Reservations } from '../Models/reservations';
 @Injectable({
   providedIn: 'root'
 })
+
+
+/**
+ * Reservations Api Endpoint
+ * 
+ * @author Justin Kroh
+ * */
 export class ReservationsService {
 
 

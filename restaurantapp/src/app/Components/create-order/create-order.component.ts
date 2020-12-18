@@ -15,32 +15,45 @@ import { MenuItemsService } from 'src/app/Services/menuitems.service';
   templateUrl: './create-order.component.html',
   styleUrls: ['./create-order.component.css']
 })
+
+
+
+  /**
+ * This page compromises of a combined form which hits 2 apis, the customer, and the order post API
+ * 
+ * @author Justin Kroh
+ * */
 export class CreateOrderComponent implements OnInit {
 
   title ='Orders Page';
 
-  orderForm: FormGroup;
-  customerForm: FormGroup;
+ // orderForm: FormGroup;
+ // customerForm: FormGroup;
 
+
+   /**
+ * Form group on the page
+ * 
+ * */
   orderForm2: FormGroup;
 
 
   constructor(private formBuilder: FormBuilder, private menuItemservice: MenuItemsService,
      private ordersService: OrdersService, private customersService: CustomersService) {
-    this.orderForm = this.formBuilder.group({
-      orderType: '',
-      billingAddress: '',
-      deliveryAddress: ''
+    // this.orderForm = this.formBuilder.group({
+    //   orderType: '',
+    //   billingAddress: '',
+    //   deliveryAddress: ''
 
-    })
+    // })
 
-    this.customerForm = this.formBuilder.group({
-      firstName: '',
-      lastName: '',
-      email: '',
-      address: '',
+    // this.customerForm = this.formBuilder.group({
+    //   firstName: '',
+    //   lastName: '',
+    //   email: '',
+    //   address: '',
 
-    })
+    // })
 
     this.orderForm2 = this.formBuilder.group({
       firstName: '',
@@ -56,18 +69,46 @@ export class CreateOrderComponent implements OnInit {
    }
 
 
+
+
+
+  /**
+ * CustomerId returned from the form, used as fk in the order form
+ * */
   customer_id?: any; 
  
   m?: any = 'no orders';
 
+
+
+/**
+ * All menu items from the database
+ * */
   menuList: MenuItemClass[] = [];
 
+
+
+
+
+/**
+ * All items that are apart of a current order
+ * */
   orderList: MenuItemClass[] = [];
 
   menuItem2?: MenuItemClass;
 
+
+    /**
+ *  Calcluation of all items in the orderlist
+ * */
   orderPrice: number = 0;
 
+
+/**
+ * Gets all menu items, puts them in menu list
+ * 
+ * @author Justin Kroh
+ * */
   getMenuItems(): void {
 
     this.menuItemservice.getMenuItems()
@@ -77,6 +118,13 @@ export class CreateOrderComponent implements OnInit {
 
   }
 
+
+
+  /**
+ * Gets a single menu item
+ * 
+ * @author Justin Kroh
+ * */
   getMenuItem(id: string): void {
 
     this.menuItemservice.getMenuItem(id)
@@ -87,7 +135,17 @@ export class CreateOrderComponent implements OnInit {
   }
 
 
-
+/**
+ * Removes an Item from the order list,
+ * values accessed by .innerHTML
+ * 
+ * @param menuID
+ * @param itemName
+ * @param description
+ * @param any
+ * 
+ * @author Justin Kroh
+ * */
   removeItemFromOrderList2(menuID: any, itemName: any, description: any, price:any) {
 
     console.log(menuID.innerHTML);
@@ -128,7 +186,11 @@ export class CreateOrderComponent implements OnInit {
 
 
 
-
+/**
+ * Calculates total price of all items in orderlist
+ * 
+ * @author Justin Kroh
+ * */
   calculatePrice(){
 
     let calculatedPrice: number = 0;
@@ -165,6 +227,14 @@ export class CreateOrderComponent implements OnInit {
     //this.orderList.push(new MenuItemClass(itemName.value, description.value, price.value, menuID.value));
   }
 */
+
+
+
+/**
+ * Adds items to the orderlist rendered on screen
+ * 
+ * @author Justin Kroh
+ * */
   addItemToOrderList2(menuID: any, itemName: any, description: any, price:any) {
 
     console.log(menuID.innerHTML);
@@ -248,6 +318,13 @@ export class CreateOrderComponent implements OnInit {
 
 */
 
+
+/**
+ * Called on complete of submission of customer data
+ * 
+ * @author Justin Kroh
+ * */
+
   submitOrderData(c_id: number) {
 
     var orderType = this.orderForm2.get('orderType')?.value;
@@ -279,6 +356,12 @@ export class CreateOrderComponent implements OnInit {
   }
 
 
+
+  /**
+ * Submits customer data, on retrieval of customer ID, calls the sumbitOrderData function
+ * 
+ * @author Justin Kroh
+ * */
   submitOrderForm2() {
 
     console.log(this.orderForm2.value);
@@ -348,7 +431,7 @@ export class CreateOrderComponent implements OnInit {
   ngOnInit(): void {
     this.getMenuItems();
 
-    this.getMenuItem('1');
+    //this.getMenuItem('1');
 
   
   }

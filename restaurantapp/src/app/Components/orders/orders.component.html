@@ -22,7 +22,7 @@
       </thead>
       <tbody *ngFor="let order of orderList">
               <td #orderID>{{order.order_id}}</td>
-              <td #customerID>{{order.customer_id}}</td>
+              <td><u><a #customerID (click)="getCustomer(customerID)">{{order.customer_id}}</a></u></td>
               <td #orderType>{{order.orderType}}</td>
               <td #status>{{order.status}}</td>
               <td #deliveryAddress>{{order.deliveryAddress}}</td>
@@ -32,4 +32,30 @@
               <td><button (click)="updateStatusCANCELED(orderID);">CANCELED</button></td>
       </tbody>
   </table>
+</div>
+
+<br>
+
+<p class =" d-flex justify-content-center">Selected Customer</p>
+
+
+<br>
+
+<div *ngIf="customer" class = " d-flex justify-content-center container">
+  <table >
+    <thead>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Email</td>
+        <td>Address</td>
+    </thead>
+    <tbody>
+            <td>{{customer.firstName}}</td>
+            <td>{{customer.lastName}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.address}}</td>
+    </tbody>
+</table>
+
+
 </div>

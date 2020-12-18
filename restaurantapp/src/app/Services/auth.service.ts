@@ -10,8 +10,21 @@ import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 
+
+/**
+ *  Service responsible for accessing Authorization endpoint and accessing session info
+ * 
+ * 
+ * @author Justin Kroh
+ * */
+
 export class AuthService {
 
+
+/**
+ * URL of API Endpoint
+ * 
+ * */
   private employeesUrl = 'http://localhost:8081/restaurantappserver/api/employee/login';
 
   constructor(private http: HttpClient) { }

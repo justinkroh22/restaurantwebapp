@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Customer } from '../Models/customer';
+import { CustomerClass } from 'src/app/customerclass';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -8,6 +9,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
+
+/**
+ * Customers Endpoint
+ * 
+ * @author Justin Kroh
+ * */
 export class CustomersService {
 
   private customersUrl = 'http://localhost:8081/restaurantappserver/api/customers';
@@ -20,6 +28,16 @@ export class CustomersService {
 
     console.log(this.http.get<Customer[]>(this.customersUrl));
     return this.http.get<Customer[]>(this.customersUrl);
+  }
+
+
+  getCustomer(id: number): Observable<CustomerClass> {
+
+    console.log(id);
+    
+    console.log(this.http.get<CustomerClass>(this.customersUrl + '/c/' + id));
+    return this.http.get<CustomerClass>(this.customersUrl + '/c/' + id);
+
   }
 
   saveCustomer(customer: Customer): Observable<any> {

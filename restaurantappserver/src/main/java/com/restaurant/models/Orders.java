@@ -46,7 +46,9 @@ public class Orders {
 	@Column(name = "billing_address")
 	private String billingAddress;
 	
-    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	
+	//Changing this to merged solve the issue of multiple same menu items in the same session
+    @ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
     // @JoinTable informs hibernate of the junction table that hosts the many-to-many relationship
     //
     @JoinTable(name="order_items",

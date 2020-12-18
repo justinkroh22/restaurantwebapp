@@ -11,6 +11,14 @@ import { FormBuilder, FormGroup } from "@angular/forms";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
+
+/**
+ * This class is responsible for submission of the login form and updating the authService
+ * 
+ * @author Justin Kroh
+ * */
 export class LoginComponent implements OnInit {
 
   loginStatus: boolean = false;
@@ -33,7 +41,11 @@ export class LoginComponent implements OnInit {
    }
 
 
-
+/**
+ * Gets login function than calls function to set data in authService
+ * 
+ * @author Justin Kroh
+ * */
    submitLoginForm() {
 
     console.log(this.loginForm.value);
@@ -48,7 +60,6 @@ export class LoginComponent implements OnInit {
 
     //console.log(userLogin);
 
-    // This data is returned data after post just use .whatever field
     this.authService.login(email, password)
     .subscribe(data => {
       if (data != null){this.loginStatus = true;}
@@ -70,6 +81,11 @@ this.authService.login(email, password)
 */
 
 
+/**
+ * Updates authService and redirects to homepage if login successful
+ * 
+ * @author Justin Kroh
+ * */
   setLoginFunction(){
     console.log(this.loginStatus);
 

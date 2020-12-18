@@ -109,19 +109,19 @@ public class OrdersController {
     		
     	}
     	
-    	System.out.println(o);
+    	//System.out.println(o);
     	
-    	System.out.println(o.getOrder_id());
+    	//System.out.println(o.getOrder_id());
     	
     	o.getItemsOrdered().clear();
     	
-    	System.out.println(o.getItemsOrdered());
+    	//System.out.println(o.getItemsOrdered());
     	
     	o.setItemsOrdered(actualItemsOrdered);
     	
-    	System.out.println(o.getItemsOrdered());
+    	//System.out.println(o.getItemsOrdered());
     	
-    	System.out.println(o);
+    	//System.out.println(o);
     	ordersDAO.save(o);
     }
     

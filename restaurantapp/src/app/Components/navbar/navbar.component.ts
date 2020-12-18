@@ -6,6 +6,13 @@ import { AuthService } from 'src/app/Services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
+
+/**
+ * Display Navbar
+ * 
+ * @author Justin Kroh, Ronald Martz
+ * */
 export class NavbarComponent implements OnInit {
 
 

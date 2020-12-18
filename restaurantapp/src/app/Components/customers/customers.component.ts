@@ -10,6 +10,13 @@ import { FormBuilder, FormGroup } from "@angular/forms";
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.css']
 })
+
+
+/**
+ * The OG Customer Component, originally ment for form data, now only displays customer info.
+ * 
+ * @author Justin Kroh
+ * */
 export class CustomersComponent implements OnInit {
 
 

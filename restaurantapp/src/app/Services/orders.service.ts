@@ -6,6 +6,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
+
+
+/**
+ * Orders Endpoint Access
+ * 
+ * @author Justin Kroh
+ * */
 export class OrdersService {
 
   private ordersUrl = 'http://localhost:8081/restaurantappserver/api/orders';

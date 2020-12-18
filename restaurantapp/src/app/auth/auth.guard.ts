@@ -13,6 +13,9 @@ import { AuthService } from 'src/app/Services/auth.service';
  * The authguard holds the canActivate function, which checks the auth service to see if a user is logged in
  * by checking if there is data in session storage
  * 
+ * 
+ * 
+ * @author Justin Kroh
  * */
 export class AuthGuard implements CanActivate {
 
@@ -28,6 +31,12 @@ export class AuthGuard implements CanActivate {
 
   }
 
+
+  /**
+ * Checks the auth service to see if a session type exists, if not routes to the employee login page
+ * 
+ * @author Justin Kroh
+ * */
   checkLogin(): boolean | UrlTree{
 
     if(this.authService.getSessionType()) {
