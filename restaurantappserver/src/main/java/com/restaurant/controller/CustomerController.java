@@ -77,6 +77,8 @@ public class CustomerController {
 	 * */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Customer> getAllCustomers() {
+    	logger.info("Listing All customers");
+    	
     	System.out.println("Get all customers");
         return customerDAO.getAll();
     }
@@ -96,6 +98,8 @@ public class CustomerController {
     // where x is some int
 	public Customer getCustomerById(@PathVariable(name="customerId", required = true) Integer id) {
     	
+    	logger.info("Listing customer" + id);
+    	
     	System.out.println(id);
 		return customerDAO.getById(id);
 	}
@@ -114,6 +118,9 @@ public class CustomerController {
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public Customer addCustomer(@RequestBody Customer c) throws URISyntaxException {
     
+    	
+    	logger.info("Adding customer");
+    	
     	System.out.println(c);
     	return customerDAO.save(c);
     }
@@ -162,6 +169,8 @@ public class CustomerController {
     	HttpHeaders httpHeaders = new HttpHeaders();
        
     	System.out.println(id);
+    	
+    	logger.info("Deleting customer" + id);
     	
     	customerDAO.deleteById(id);
     	

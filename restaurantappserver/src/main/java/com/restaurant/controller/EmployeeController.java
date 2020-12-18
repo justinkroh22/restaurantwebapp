@@ -1,5 +1,6 @@
 package com.restaurant.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,8 @@ import java.util.List;
 
 
 
+
+
 /**
  * The Employee Contoller "Handles" All incoming API requests. The handlers call the DAO which interacts with the database.
  *
@@ -43,7 +46,7 @@ public class EmployeeController {
     private EmployeeDAO employeeDAO;
 
     
-    
+    private static final Logger logger = Logger.getLogger(CustomerController.class);    
     
     /**
      * Returns a list of all Employees
@@ -56,7 +59,12 @@ public class EmployeeController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Employee> getAllEmployees() {
     	System.out.println("Get all employee");
+    	
+    	logger.info("Listing All Employees");
+    	
         return employeeDAO.getAll();
+        
+        
     }
     
     
@@ -73,6 +81,9 @@ public class EmployeeController {
 	public Employee getEmployeeById(@PathVariable(name="employeeId", required = true) Integer id) {
     	
     	System.out.println(id);
+    	
+    	logger.info("Listing Employee with id:" + id);
+    	
 		return employeeDAO.getById(id);
 	}
     
@@ -88,6 +99,10 @@ public class EmployeeController {
     public Employee addEmployee(@RequestBody Employee e) throws URISyntaxException {
     
     	System.out.println(e);
+    	
+    	logger.info("Adding Employee" + e.getFirstName());
+    	
+    	
     	return employeeDAO.save(e);
     	
     }
@@ -108,7 +123,7 @@ public class EmployeeController {
     	System.out.println(login);
     	System.out.println(login.getEmail());
 
-
+    	logger.info("Checking for credentials" + login.getEmail());
     	
     	return employeeDAO.checkCredentials(login.getEmail(), login.getPassword());
     }
@@ -127,6 +142,9 @@ public class EmployeeController {
         System.out.println("Create httpHeaders");
         HttpHeaders httpHeaders = new HttpHeaders();
         System.out.println("Reaching the controller");
+        
+        logger.info("Deleting employee with id" + id);
+        
         System.out.println(id);
         employeeDAO.remove(id);
         System.out.println("Return ResponseEntity");

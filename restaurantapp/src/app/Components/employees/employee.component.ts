@@ -61,6 +61,8 @@ export class EmployeeComponent implements OnInit {
 
     this.employeeService.saveEmployeeForm(employeeclass)
     .subscribe((data => {console.log(data.body)}));
+
+    window.location.reload();
     //.subscribe((data => {console.log(data.body.employee_id)}));
   }
 

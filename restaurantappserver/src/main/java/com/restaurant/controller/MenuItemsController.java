@@ -1,5 +1,6 @@
 package com.restaurant.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 
+
+
 /**
  * The MenuItems Contoller "Handles" All incoming API requests. The handlers call the DAO which interacts with the database.
  *
@@ -32,6 +35,10 @@ public class MenuItemsController {
     private MenuItemsDAO menuItemsDAO;
 
     
+    
+    private static final Logger logger = Logger.getLogger(CustomerController.class);  
+    
+    
     /**
      * Returns a list of all menu items
      *
@@ -43,6 +50,10 @@ public class MenuItemsController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MenuItems> getAllMenuItems() {
     	System.out.println("Det all menu items");
+    	
+    	
+    	logger.info("Getting all Menu items");
+    	
         return menuItemsDAO.getAll();
     }
     
@@ -59,6 +70,9 @@ public class MenuItemsController {
     // where x is some int
 	public MenuItems getMenuItemById(@PathVariable(name="menuId", required = true) Integer id) {
     	
+    	logger.info("Getting MenuItem with id of " + id);
+    	
+    	
     	System.out.println(id);
 		return menuItemsDAO.getById(id);
 	}
@@ -73,6 +87,9 @@ public class MenuItemsController {
 	 * */
     @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
     public void addMenuItem(@RequestBody MenuItems m) throws URISyntaxException {
+    	
+    	logger.info("Adding menu Item " + m.getItemName());
+    	
     	
     	System.out.println(m);
     	menuItemsDAO.save(m);
@@ -89,6 +106,9 @@ public class MenuItemsController {
     @DeleteMapping(path="r/{menu_id}")
     @ResponseBody
     public ResponseEntity<String> deleteFromMenu(@PathVariable(name="menu_id", required = true) Integer id) throws URISyntaxException{
+    	
+    	logger.info("Deleting MenuItem with id of " + id);
+    	
     	System.out.println("Create httpHeaders");
         HttpHeaders httpHeaders = new HttpHeaders();
         System.out.println("Reaching the controller");
@@ -104,10 +124,14 @@ public class MenuItemsController {
 	 *
 	 *
 	 * */
+    
+    
 	@RequestMapping(method=RequestMethod.PUT,path="/u/")
 	@ResponseBody
 	public void changeMenuItem(@RequestParam(name="id") Integer id, @RequestParam(name="name") String name,
 							   @RequestParam(name="desc") String desc, @RequestParam(name="price") Integer price){
+		
+		logger.info("Updating MenuItem with id of " + id);
 		System.out.println("Updated Menu Item " + id + " Price to " + price);
 		menuItemsDAO.changeItem(id,name,desc,price);
 	}

@@ -1,3 +1,38 @@
+<br>
+<br>
+
+<div class =" d-flex justify-content-center">
+  <h2><i>Manage Employees:</i></h2>
+</div>
+
+<br>
+
+<div class="container d-flex justify-content-center">
+<table >
+  <thead>
+      <td>Employee ID</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Email</td>
+      <td>Address</td>
+      <td>Role</td>
+  </thead>
+  <tbody *ngFor="let the_employee of employeeList">
+          <td>{{the_employee.employee_id}}</td>
+          <td>{{the_employee.firstName}}</td>
+          <td>{{the_employee.lastName}}</td>
+          <td>{{the_employee.email}}</td>
+          <td>{{the_employee.address}}</td>
+          <td>{{the_employee.user_type}}</td>
+          <td><button (click)=removeEmployee(the_employee.employee_id)>Remove Employee</button></td>
+  </tbody>
+</table>
+</div>
+
+<br>
+
+<br>
+
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
 
@@ -31,22 +66,4 @@
   </form>
 </div>
 
-<table >
-  <thead>
-      <td>Employee ID</td>
-      <td>First Name</td>
-      <td>Last Name</td>
-      <td>Email</td>
-      <td>Address</td>
-      <td>Role</td>
-  </thead>
-  <tbody *ngFor="let the_employee of employeeList">
-          <td>{{the_employee.employee_id}}</td>
-          <td>{{the_employee.firstName}}</td>
-          <td>{{the_employee.lastName}}</td>
-          <td>{{the_employee.email}}</td>
-          <td>{{the_employee.address}}</td>
-          <td>{{the_employee.user_type}}</td>
-          <td><button (click)=removeEmployee(the_employee.employee_id)>Remove Employee</button></td>
-  </tbody>
-</table>
+<br>

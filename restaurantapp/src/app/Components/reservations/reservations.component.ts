@@ -22,6 +22,8 @@ export class ReservationsComponent implements OnInit{
   reservationForm: FormGroup;
   customer_id?: any;
 
+  message: string = '';
+
 
   constructor(private reservationsService: ReservationsService, private customersService: CustomersService,
     public authService: AuthService, private formBuilder: FormBuilder) {
@@ -95,6 +97,8 @@ export class ReservationsComponent implements OnInit{
       .subscribe(resp => { console.log(resp);});
 
       window.location.reload();
+
+      this.message = 'Order Submitted';
   }
 
   cancelReservations(id:any): void{

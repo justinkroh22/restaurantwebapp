@@ -420,7 +420,7 @@ public class Tests {
 	            .add("menu_id", 1)
 	            .add("itemName", "cheeseburger")
 	            .add("description", "Saucy slice of beef with cheese")
-	            .add("price", 100.0)
+	            .add("price", 10.00)
 	            .build()
 	            .toString();
 		System.out.println(json);
@@ -592,10 +592,22 @@ public class Tests {
   
 //*****************Testing for OrdersController's addOrders method********************************
   
+  
+  
+	String jsonOrder = Json.createObjectBuilder()
+	.add("orderType", "DELIVERY")
+	.add("status", "PENDING")
+	.add("customer_id", 1)
+	.add("deliveryAddress", "11 Delivery Lane")
+	.add("billingAddress", "11 Billing lane")
+	.build()
+	.toString();
+  
+  
   @Test
   public void getOrdersController_ThenAddOrder() throws Exception {
 	  MvcResult result = mockMvc.perform(post("/orders") 
-      		.contentType(MediaType.APPLICATION_JSON_VALUE).content(""))
+      		.contentType(MediaType.APPLICATION_JSON_VALUE).content(jsonOrder))
       		.andDo(print())
       		//.andExpect(status().isOk())
               .andReturn();
@@ -606,7 +618,7 @@ public class Tests {
 	
 		int actual = result.getResponse().getStatus();   
 		
-		int expected = 400;
+		int expected = 200;
         
 		Assert.assertEquals(actual, expected);
 		
@@ -668,7 +680,7 @@ public class Tests {
 	            .add("customer_id", 1)
 	            .add("date", "10-10-2020")
 	            .add("time", 12)
-	            .add("status", "Cancelled")
+	            .add("status", "CANCELED")
 	            .build()
 	            .toString();
 		System.out.println(json);

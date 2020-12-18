@@ -37,6 +37,8 @@ export class CreateOrderComponent implements OnInit {
  * */
   orderForm2: FormGroup;
 
+  message: string = '';
+
 
   constructor(private formBuilder: FormBuilder, private menuItemservice: MenuItemsService,
      private ordersService: OrdersService, private customersService: CustomersService) {
@@ -348,6 +350,8 @@ export class CreateOrderComponent implements OnInit {
     .subscribe((data => {console.log(data.body)}));
 
     console.log(orderObject);
+
+    this.message = 'Order Submitted';
 
     }  
     else console.log("issue with ID");
