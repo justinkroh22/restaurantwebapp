@@ -97,7 +97,20 @@ public class MenuItemsController {
         System.out.println("Return ResponseEntity");
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.OK);
     }
-    
+
+	/**
+	 * Updates a MenuItem from the database, uses query params ID, Name, Desc, and Price
+	 * @author Ronald Martz
+	 *
+	 *
+	 * */
+	@RequestMapping(method=RequestMethod.PUT,path="/u/")
+	@ResponseBody
+	public void changeMenuItem(@RequestParam(name="id") Integer id, @RequestParam(name="name") String name,
+							   @RequestParam(name="desc") String desc, @RequestParam(name="price") Integer price){
+		System.out.println("Updated Menu Item " + id + " Price to " + price);
+		menuItemsDAO.changeItem(id,name,desc,price);
+	}
     
 
 }

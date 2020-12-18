@@ -43,6 +43,11 @@ export class EmployeeService {
     observe: 'response'
   };
 
+  removeEmployee(id: string): Observable<any>{
+    console.log(this.employeesUrl + '/r/' + id);
+    return this.http.delete<any>(this.employeesUrl + '/r/' + id);
+  }
+
   saveEmployeeForm(any: any): Observable<any> {
     return this.http.post<any>(this.employeesUrl, any, this.httpOptions);
   }

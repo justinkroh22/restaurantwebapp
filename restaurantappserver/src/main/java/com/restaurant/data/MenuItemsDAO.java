@@ -85,14 +85,35 @@ public class MenuItemsDAO {
 	 * @param MenuItem m see model
 	 * 
 	 * @author Ronald Martz
-	 * 
-	 * @return MenuItem, see Model
 	 * */
     @Transactional
     public void remove(Integer m){
         Session session = sessionFactory.getCurrentSession();
         Query hql = session.createQuery("delete from MenuItems where menu_id=:id");
         hql.setInteger("id",m);
+        hql.executeUpdate();
+    }
+
+    /**
+     * Updates a Menu Item, name, description, and price
+     * @param ID of menuItem to get
+     *
+     * @param NAME of new Menu Item Name
+     * @param DESC of new Menu Item Description
+     * @param PRICE of new Menu Item Price
+     *
+     * @author Ronald Martz
+     *
+     * */
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
+    public void changeItem(Integer id, String name, String desc, Integer price){
+        Session s = sessionFactory.getCurrentSession();
+        Query hql = s.createQuery("Update MenuItems set item_name = :itemName, description = :desc, price = :price where menu_id = :id");
+        hql.setString("itemName",name);
+        hql.setInteger("id",id);
+        hql.setString("desc", desc);
+        hql.setInteger("price", price);
+
         hql.executeUpdate();
     }
 

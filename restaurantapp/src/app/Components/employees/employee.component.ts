@@ -18,13 +18,13 @@ export class EmployeeComponent implements OnInit {
   title = 'Employee List';
 
   employee: Employee ={
-    id:1,
+    employee_id:1,
     password: 'passwordtest',
     email: 'emailtest@cc.gmail',
     firstName: 'firstnametest',
     lastName: 'lastnametest',
     address: 'addresstest',
-    usertype: 'usertypetest',
+    user_type: 'usertypetest',
   };
 
   form: FormGroup;
@@ -69,6 +69,14 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getEmployees()
     .subscribe(employeeList => this.employeeList = employeeList);
 
+  }
+
+  removeEmployee(id: any): void{
+    let empID: string = id.toString();
+    this.employeeService.removeEmployee(empID)
+      .subscribe(resp => console.log(resp));
+
+    window.location.reload();
   }
 
   // saveEmployee(employee: Employee): void{
