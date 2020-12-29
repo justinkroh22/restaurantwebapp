@@ -45,13 +45,28 @@ To-do list:
    
 git clone https://github.com/justinkroh22/restaurantwebapp.git
 
-1. Open the restarauntappserver in your IDE
+Back End:
+
+1. Open the restaurantappserver in your IDE used for java
 2. Gain a copy of the persitence configuration from the owner of the repo to connect to the database
 3. Run the application in tomcat server
+
+
+Front End:
+
+1. Open the restaurantwebapp in your IDE used for angular
+2. Run npm -install
+3. Run ng serve --open
 
 Example of Persistance Configuration:
 
 ![](mkimg/persist.png)
+
+Homepage:
+
+![](mkimg/homepage.png)
+
+![](mkimg/orderandmenu.png)
 
 
 
