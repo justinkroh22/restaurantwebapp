@@ -62,15 +62,6 @@ Example of Persistance Configuration:
 
 ![](mkimg/persist.png)
 
-Homepage:
-
-![](mkimg/homepage.png)
-
-Order and Menu Page:
-
-![](mkimg/orderandmenu.png)
-
-
 
 ## Usage
 
@@ -78,11 +69,15 @@ Visit each page as a customer or manager. To obtain access for a user that is a 
 
 Homepage:
 
+
 ![](mkimg/homepage.png)
+
 
 Order and Menu Page:
 
+
 ![](mkimg/orderandmenu.png)
+
 
 ## Contributors
 
