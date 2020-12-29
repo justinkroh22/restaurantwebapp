@@ -58,8 +58,7 @@ git clone https://github.com/justinkroh22/restaurantwebapp.git
 
 ## Contributors
 
-> Here list the people who have contributed to this project. (ignore this section, if its a solo project)
+* Justin Kroh
+* Ronald Martz
+* Pascaline Mukakamari
 
-## License
-
-This project uses the following license: [<license_name>](<link>).
