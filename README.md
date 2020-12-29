@@ -66,13 +66,23 @@ Homepage:
 
 ![](mkimg/homepage.png)
 
+Order and Menu Page:
+
 ![](mkimg/orderandmenu.png)
 
 
 
 ## Usage
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+Visit each page as a customer or manager. To obtain access for a user that is a manager, you must contact the project owner.
+
+Homepage:
+
+![](mkimg/homepage.png)
+
+Order and Menu Page:
+
+![](mkimg/orderandmenu.png)
 
 ## Contributors
 
