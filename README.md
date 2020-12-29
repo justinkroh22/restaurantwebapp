@@ -49,6 +49,7 @@ git clone https://github.com/justinkroh22/restaurantwebapp.git
 2. Gain a copy of the persitence configuration from the owner of the repo to connect to the database
 3. Run the application in tomcat server
 
+![](mkimg/persist.png)
 
 
 
