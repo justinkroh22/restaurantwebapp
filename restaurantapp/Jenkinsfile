@@ -16,7 +16,7 @@ pipeline {
         stage('Test') {
             steps {
               
-                sh 'cd /var/jenkins_home/workspace/restaurantpipe/restaurantapp/restaurantapp'
+                sh 'cd /var/jenkins_home/workspace/restaurantpipe/restaurantapp'
               
                 sh 'ls -al'
               
