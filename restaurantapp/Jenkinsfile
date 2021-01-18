@@ -17,6 +17,8 @@ pipeline {
             steps {
               
                 sh 'cd /var/jenkins_home/workspace/restaurantpipe/restaurantapp'
+              
+                sh 'ls -al'
                 sh 'ng serve --open'
             }
         }
