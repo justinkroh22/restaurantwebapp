@@ -19,6 +19,12 @@ pipeline {
                 sh 'cd /var/jenkins_home/workspace/restaurantpipe/restaurantapp'
               
                 sh 'ls -al'
+              
+                sh 'cd /var/jenkins_home/workspace/restaurantpipe@tmp'
+              
+                sh 'ls -al'
+                
+              
                 sh 'ng serve --open'
             }
         }
