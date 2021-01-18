@@ -17,12 +17,10 @@ pipeline {
         stage('Test') {
             steps {
               
-                sh 'cd /var/jenkins_home/workspace/restaurantpipe/restaurantapp'
+              sh 'cd restaurantapp | ls -al | ng serve'
               
                 sh 'ls -al'
-              
-                sh 'ng serve --open'
-            }
+                          }
         }
 
     }
